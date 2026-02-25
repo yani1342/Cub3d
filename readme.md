@@ -21,25 +21,28 @@ This project has been created as part of the 42 curriculum :
 - **vhorta-s** — partie 3D  
 
 ## 📚 Ressources utilisées
-🎥 Tutoriels & vidéos
-    - Raycasting Tutorial (Python)
-    https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
 
-    - Raycasting PICO‑8 #4 — Théorie
-    https://www.youtube.com/watch?v=ZAlMicFhHmM
+### 🎥 Tutoriels & vidéos
+- **Raycasting Tutorial (Python)**  
+  https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
 
-📝 Articles & documentation
-    Cub3D | Nathan Rontey  
-    https://nathaan.me/projects/cub3d
+- **Raycasting PICO‑8 #4 — Théorie**  
+  https://www.youtube.com/watch?v=ZAlMicFhHmM
 
-🤖 Outils d’aide IA "selon les conventions 42" cf fiche sujet
-    Copilot (pour vhorta-s)
-    Gemini (pour ymsa)
+### 📝 Articles & documentation
+- **Cub3D | Nathan Rontey**  
+  https://nathaan.me/projects/cub3d
 
+### 🤖 Outils d’aide IA (selon les conventions 42)
+- Copilot (pour vhorta-s)  
+- Gemini (pour ymsa)
+
+---
 
 ## 🛠️ Compilation
-✔️ Mise à jour des droits d’exécution de la MiniLibX
-(nécessaire sur certaines installations Linux)
+
+✔️ Mise à jour des droits d’exécution de la MiniLibX  
+*(nécessaire sur certaines installations Linux)*
 cd minilibx-linux
 chmod +x configure
 make
