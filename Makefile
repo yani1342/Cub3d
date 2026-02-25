@@ -1,21 +1,21 @@
 # ===========================
 #      PROJECT SETTINGS
 # ===========================
-NAME        = cube3D
+NAME        = cub3D
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g3
-INCLUDES    = -I. -Iincludes -I$(MLX_DIR)
+INCLUDES    = -Iincludes -I$(MLX_DIR)
 
-SRC_DIRS    = src_exec src_pars scr_gc
+SRC_DIR     = src
 OBJ_DIR     = obj
 MLX_DIR     = minilibx-linux
 
 # ===========================
 #      SOURCE / OBJECTS
 # ===========================
-SRCS        = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-OBJS        = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+SRCS        = $(shell find $(SRC_DIR) -type f -name "*.c")
+OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # ===========================
 #      MLX (Linux)
@@ -39,7 +39,7 @@ $(NAME): $(MLX_LIB) $(OBJS)
 # ===========================
 #      BUILD OBJECTS
 # ===========================
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -55,7 +55,7 @@ $(MLX_LIB):
 # ===========================
 norm:
 	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) *.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
+	@norminette $(SRCS) include/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
 
 # ===========================
 #      CLEAN RULES
