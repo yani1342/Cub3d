@@ -18,47 +18,36 @@ Il s'agit d'un mini‑raycaster permettant de se déplacer dans une carte en 2D 
 
 This project has been created as part of the 42 curriculum :  
 - **ymsa** — partie 2D 
-- **vhorta-s** — partie 3D 
-
----
+- **vhorta-s** — partie 3D  
 
 ## 📚 Ressources utilisées
+🎥 Tutoriels & vidéos
+    - Raycasting Tutorial (Python)
+    https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
 
-### 🎥 Tutoriels & vidéos
-- **Raycasting Tutorial (Python)**  
-  https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
+    - Raycasting PICO‑8 #4 — Théorie
+    https://www.youtube.com/watch?v=ZAlMicFhHmM
 
-- **Raycasting PICO‑8 #4 — Théorie**  
-  https://www.youtube.com/watch?v=ZAlMicFhHmM
+📝 Articles & documentation
+    Cub3D | Nathan Rontey  
+    https://nathaan.me/projects/cub3d
 
-### 📝 Articles & documentation
-- **Cub3D | Nathan Rontey**  
-  https://nathaan.me/projects/cub3d
+🤖 Outils d’aide IA "selon les conventions 42" cf fiche sujet
+    Copilot (pour vhorta-s)
+    Gemini (pour ymsa)
 
-### 🤖 Outils d’aide IA (selon les conventions 42)
-- Copilot (pour vhorta-s)  
-- Gemini (pour ymsa)
-
----
 
 ## 🛠️ Compilation
-
-✔️ Mise à jour des droits d’exécution de la MiniLibX  
-*(nécessaire sur certaines installations Linux)*
-
-```bash
+✔️ Mise à jour des droits d’exécution de la MiniLibX
+(nécessaire sur certaines installations Linux)
 cd minilibx-linux
 chmod +x configure
 make
 cd ..
 make
 
----
-
 ## 🚀 Lancement  
 ./cub3D maps/map.cub
-
----
 
 ## 🗂️ Structure du projet 
 cub3d/
@@ -68,8 +57,6 @@ cub3d/
 │── minilibx-linux/
 │── Makefile
 │── README.md
-
----
 
 🗺️ Format des cartes .cub
 Texture NO, SO, WE, EA
@@ -99,4 +86,5 @@ ESC : quitter
 ---
 
 ## 📌 Conclusion & analyses finales  
-*(Bilan du projet, ce que vous avez appris, ce que vous amélioreriez, perspectives pour la suite…)*
+*(Bilan du projet, ce que vous avez appris, ce que vous amélioreriez,
+ perspectives pour la suite…)*
