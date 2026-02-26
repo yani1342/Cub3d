@@ -12,6 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
+//check la map
 int	check_extension(char *filename)
 {
 	int	len;

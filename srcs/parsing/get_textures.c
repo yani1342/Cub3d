@@ -50,7 +50,7 @@ static int	assign_texture(char **texture_path, char *trimmed)
 		return (0);
 	return (1);
 }
-
+//savoir si c'est NORD SUD EST OU OUEST avant d'assigner la texture
 int	process_texture(t_data *data, char *trimmed)
 {
 	if (ft_strncmp(trimmed, "NO ", 3) == 0)
@@ -64,30 +64,3 @@ int	process_texture(t_data *data, char *trimmed)
 	return (1); 
 }
 
-void	parse_file(char *filename, t_data *data)
-{
-	int		fd;
-	char	*line;
-	char	*trimmed;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error\nCannot open file\n", 2);
-		exit(1);
-	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		trimmed = skip_spaces(line);
-		if (!process_texture(data, trimmed))
-        {
-			free(line);
-			close(fd);
-			exit(1);
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-}

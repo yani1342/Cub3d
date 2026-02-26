@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 10:48:37 by ymsa              #+#    #+#             */
-/*   Updated: 2026/02/25 10:48:37 by ymsa             ###   ########.fr       */
+/*   Created: 2026/02/26 10:06:25 by ymsa              #+#    #+#             */
+/*   Updated: 2026/02/26 10:06:25 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	init_map_data(t_data *data)
+void	free_split(char **tab)
 {
-	data->map.grid = NULL;
-	data->map.no_path = NULL;
-	data->map.so_path = NULL;
-	data->map.we_path = NULL;
-	data->map.ea_path = NULL;
-	data->map.floor_col = -1; //-1 indique que la couleur n'est pas encore mise
-	data->map.ceil_col = -1; // ces deux -1 sont une securité anti doublon
-	data->mlx_ptr = NULL;
-	data->win_ptr = NULL;
-}
+	int	i;
 
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
