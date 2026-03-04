@@ -39,7 +39,7 @@ LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 # ===========================
 #      DEFAULT RULE
 # ===========================
-all: $(NAME) $(LIBFT_LIB) $(MLX_LIB)
+all: $(NAME)
 
 # ===========================
 #      BUILD EXECUTABLE
@@ -83,12 +83,12 @@ norm:
 clean:
 	@echo "[CLEAN] Removing object files"
 	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	@echo "[CLEAN] Removing executable"
 	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 re: fclean all
 

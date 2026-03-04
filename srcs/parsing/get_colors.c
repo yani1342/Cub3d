@@ -90,5 +90,5 @@ int	process_color(t_data *data, char *trimmed)
 		if (!assign_color(&data->map.ceil_col, trimmed))
 			return (0);
 	}
-	return (1); // Si ce n'est ni F ni C, on laisse passer
+	return (1); // Si c'est ni F ni C, on laisse passer
 }

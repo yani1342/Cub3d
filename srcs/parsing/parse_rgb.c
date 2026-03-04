@@ -40,7 +40,7 @@ int	parse_rgb(char *color_str)
 	int		g;
 	int		b;
 
-	rgb = ft_split(color_str, ',');	// On découpe la chaine en 3 morceaux
+	rgb = ft_split(color_str, ',');	//On découpe la chaine en 3 morceaux
 	if (!rgb)
 		return (-1);
 	// On convertit les morceaux en nombres

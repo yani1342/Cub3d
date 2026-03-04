@@ -10,3 +10,10 @@ Le troisième chiffre (0) : La quantité de lumière Bleue.
 
 **Parse_rgb**
 Quand tu voudra peindre le sol, tu prendra juste ce grand nombre 14443520 et le donnera à la MiniLibX.
+
+**Makefile**
+*.c est interdit, find aussi est interdit a 42.
+Je viens de voir qu'on a utiliser *.c pour minishell mais on aurait pas du ptdrrr c'est pas grave.
+Du coup j'ai lister tout les .c comme avant, et j'ai fais le chemin pour la libft. Mais j'ai bien garder ta structure du makefile
+- Important : retirer -g3 avant de push c'est interdit.
+Ps : j'aime trop le truc ou ca creer un fichier avec les .o !
