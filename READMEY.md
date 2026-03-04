@@ -1,5 +1,5 @@
 
-
+Je laisse un max de commentaire dans mes codes, si jamais t'as besoin de plus d'info, et pour moi même quand je reviens sur le code.
 
 Dans le fichier .cub, quand tu vois une ligne comme F 220,100,0, ces trois chiffres correspondent au système RGB (Red, Green, Blue), ce qui donne en français Rouge, Vert, Bleu.
 

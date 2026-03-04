@@ -81,5 +81,8 @@ void	parse_file(char *filename, t_data *data)
 		line = get_next_line(fd);
 	}
 	check_missing_elements(data, line, fd);
-	// TODO carte avec "line" 
+	free(line);
+	close(fd);
+	// Maintenant que textures/couleurs sont OK, on stocke la carte
+	parse_map(filename, data); 
 }

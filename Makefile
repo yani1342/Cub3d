@@ -22,7 +22,9 @@ SRCS_FILES  = parsing/main.c \
               parsing/parse_rgb.c \
               parsing/parsing.c \
               parsing/init.c \
-              parsing/free.c
+              parsing/free.c \
+			  parsing/parse_map.c \
+			  parsing/check_map.c
 
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -88,7 +90,7 @@ clean:
 fclean: clean
 	@echo "[CLEAN] Removing executable"
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
