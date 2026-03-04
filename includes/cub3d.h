@@ -13,6 +13,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+
 typedef struct s_player
 {
     double  x;          // Position X précise sur la carte
@@ -44,5 +50,17 @@ typedef struct s_data
 }   t_data;
 //Tu pourras ajouter t_ray ici normalement
 
+void	init_map_data(t_data *data);
+
+int		check_extension(char *filename);
+void	validate_arguments(int argc, char **argv);
+void	parse_file(char *filename, t_data *data);
+int		check_all_elements(t_data *data);
+char	*skip_spaces(char *str);
+int		process_texture(t_data *data, char *trimmed);
+int		process_color(t_data *data, char *trimmed);
+int		parse_rgb(char *color_str);
+
+void	free_split(char **tab);
 
 #endif

@@ -12,25 +12,25 @@
 
 #include "../../includes/cub3d.h"
 
-static int	is_numeric(char *str)
-{
-	int	i;
+// static int	is_numeric(char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (!ft_isdigit(str[i]))
-		return (0); 
-	while (ft_isdigit(str[i]))
-		i++;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] != '\0')
-		return (0);
-	return (1);
-}
+// 	i = 0;
+// 	if (!str)
+// 		return (0);
+// 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+// 		i++;
+// 	if (!ft_isdigit(str[i]))
+// 		return (0); 
+// 	while (ft_isdigit(str[i]))
+// 		i++;
+// 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+// 		i++;
+// 	if (str[i] != '\0')
+// 		return (0);
+// 	return (1);
+// }
 
 // Transforme la chaine "220,100,0" en un code couleur int
 int	parse_rgb(char *color_str)
