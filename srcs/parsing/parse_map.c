@@ -34,8 +34,8 @@ static int	count_map_lines(char *filename)
 		if (!in_map && (trimmed[0] == '1' || trimmed[0] == '0'))
 			in_map = 1;
 		// Une fois qu'on est dans la carte, on compte chaque ligne
-		if (in_map)
-			count++;
+		if (in_map && trimmed[0] != '\0')
+    count++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -67,7 +67,13 @@ static void	fill_grid(char **grid, char *filename)
 			in_map = 1;
         // On stocke la ligne nettoyée dans le tableau
 		if (in_map)
-			grid[i++] = ft_strtrim(line, "\n\r");
+{
+    grid[i] = ft_strtrim(line, "\n\r");
+    if (grid[i] && grid[i][0] != '\0')
+        i++;
+    else
+        free(grid[i]);
+}
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -1,0 +1,12 @@
+{
+   MLX_writev
+   Memcheck:Param
+   writev(vector[0])
+   ...
+}
+{
+   MLX_still_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+}
