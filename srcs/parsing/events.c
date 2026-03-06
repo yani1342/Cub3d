@@ -16,18 +16,16 @@ int	handle_keypress(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
+		free_data(data);
 		exit(0);
 	}
+	handle_movement(keycode, data);
+	draw_minimap(data);
 	return (0);
 }
 
 int	handle_close(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	free_data(data);
 	exit(0);
 }

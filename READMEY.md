@@ -17,6 +17,7 @@ Je viens de voir qu'on a utiliser *.c pour minishell mais on aurait pas du ptdrr
 Du coup j'ai lister tout les .c comme avant, et j'ai fais le chemin pour la libft. Mais j'ai bien garder ta structure du makefile
 - Important : retirer -g3 avant de push c'est interdit.
 Ps : j'aime trop le truc ou ca creer un fichier avec les .o !
+J'ai ajouté -lm a la compilation pour compiler la biblithèque math.h
 
 06/03/2026
 
@@ -46,4 +47,19 @@ Pour chaque case de la grille :
   - Si c'est un '1' → dessine un carré gris foncé (mur)
   - Si c'est un '0' → dessine un carré gris clair (sol)
 
+dir_x et dir_y c'est quoi ?
+C'est la direction vers laquelle regarde le joueur, exprimée comme une flèche :
+dir_x = 0, dir_y = -1  →  regarde vers le HAUT (Nord)
+dir_x = 0, dir_y =  1  →  regarde vers le BAS (Sud)
+dir_x =  1, dir_y = 0  →  regarde vers la DROITE (Est)
+dir_x = -1, dir_y = 0  →  regarde vers la GAUCHE (Ouest)
 
+movement.c
+Pour avancer, tu ajoutes simplement la direction à la position :
+player.x += dir_x * vitesse
+player.y += dir_y * vitesse
+Si le joueur regarde vers l'Est (dir_x = 1) et avance → x augmente → il va à droite
+Pour tourner, c'est là qu'on utilise cos et sin — ils permettent de faire pivoter la flèche de direction d'un certain angle.
+
+SPEED = 0.1 → c'est des cases (sur la grille de la carte)
+ROT_SPEED = 0.05 → c'est des radians (une unité d'angle)

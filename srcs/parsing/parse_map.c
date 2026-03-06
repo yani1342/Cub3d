@@ -137,7 +137,13 @@ void	parse_map(char *filename, t_data *data)
 	// width = largeur max = taille horizontale de la carte
 	data->map.width = get_map_width(data->map.grid);
     if (!check_chars(data->map.grid) || !find_player(data))
-        exit(1);
-    if (!check_map_closed(data))
-    	exit(1);
+	{
+		free_map(&data->map);
+		exit(1);
+	}
+	if (!check_map_closed(data))
+	{
+		free_map(&data->map);
+		exit(1);
+	}
 }

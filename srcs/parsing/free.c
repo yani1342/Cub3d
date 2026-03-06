@@ -26,3 +26,41 @@ void	free_split(char **tab)
 	}
 	free(tab);
 }
+
+void	free_map(t_map *map)
+{
+	if (map->no_path)
+		free(map->no_path);
+	if (map->so_path)
+		free(map->so_path);
+	if (map->we_path)
+		free(map->we_path);
+	if (map->ea_path)
+		free(map->ea_path);
+	if (map->grid)
+		free_split(map->grid);
+}
+
+static void	free_mlx(t_data *data)
+{
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
+}
+
+void	free_data(t_data *data)
+{
+	free_map(&data->map);
+	free_mlx(data);
+}
+
+void	error_exit(t_data *data, char *msg)
+{
+	ft_putstr_fd(msg, 2);
+	free_map(&data->map);
+	exit(1);
+}

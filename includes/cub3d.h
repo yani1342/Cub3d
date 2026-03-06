@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define WIN_WIDTH	1280
 # define WIN_HEIGHT	720
@@ -78,6 +79,10 @@ void	parse_file(char *filename, t_data *data);
 void	parse_map(char *filename, t_data *data);
 void	init_mlx(t_data *data);
 void	draw_minimap(t_data *data);
+void	handle_movement(int keycode, t_data *data);
+void	free_map(t_map *map);
+void	free_data(t_data *data);
+void	error_exit(t_data *data, char *msg);
 
 char	*skip_spaces(char *str);
 

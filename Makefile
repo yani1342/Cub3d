@@ -28,6 +28,7 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/flood_fill.c \
 			  parsing/minimap.c \
 			  parsing/events.c \
+			  parsing/movement.c \
 
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -51,7 +52,7 @@ all: $(NAME)
 # ===========================
 $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 	@echo "Compilation de $(NAME)..."
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -lm -o $(NAME)
 	@echo "✔️ Compilation terminée"
 
 # ===========================
