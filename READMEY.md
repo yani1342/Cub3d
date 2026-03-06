@@ -45,3 +45,5 @@ Dans put pixel on a : addr + (y * line_len) + (x * bpp / 8)
 Pour chaque case de la grille :
   - Si c'est un '1' → dessine un carré gris foncé (mur)
   - Si c'est un '0' → dessine un carré gris clair (sol)
+
+

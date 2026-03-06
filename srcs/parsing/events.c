@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 15:09:26 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/04 15:09:26 by ymsa             ###   ########.fr       */
+/*   Created: 2026/03/06 13:54:46 by ymsa              #+#    #+#             */
+/*   Updated: 2026/03/06 13:54:46 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+int	handle_keypress(int keycode, t_data *data)
 {
-	t_data	data;
-
-	validate_arguments(argc, argv);
-	init_map_data(&data);
-	parse_file(argv[1], &data);
-	parse_map(argv[1], &data);
-	init_mlx(&data);
-	draw_minimap(&data);
-	mlx_hook(data.win_ptr, 2, 1L << 0, handle_keypress, &data);
-	mlx_hook(data.win_ptr, 17, 0, handle_close, &data);
-	mlx_loop(data.mlx_ptr);
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		exit(0);
+	}
 	return (0);
+}
+
+int	handle_close(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+	exit(0);
 }

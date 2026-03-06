@@ -23,6 +23,13 @@
 # define WIN_WIDTH	1280
 # define WIN_HEIGHT	720
 # define TILE_SIZE	32 //taille d'une case sur la minimap
+# define ESC		65307
+# define W_KEY		119
+# define S_KEY		115
+# define A_KEY		97
+# define D_KEY		100
+# define LEFT		65361
+# define RIGHT		65363
 
 typedef struct s_player
 {
@@ -81,7 +88,9 @@ int		process_color(t_data *data, char *trimmed);
 int		parse_rgb(char *color_str);
 int     check_chars(char **grid);
 int	    find_player(t_data *data);
-int	check_map_closed(t_data *data);
+int     check_map_closed(t_data *data);
+int	    handle_keypress(int keycode, t_data *data);
+int	    handle_close(t_data *data);
 
 void	free_split(char **tab);
 
