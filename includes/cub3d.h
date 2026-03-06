@@ -14,10 +14,15 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+# define WIN_WIDTH	1280
+# define WIN_HEIGHT	720
+# define TILE_SIZE	32 //taille d'une case sur la minimap
 
 typedef struct s_player
 {
@@ -33,18 +38,28 @@ typedef struct s_map
     char    **grid;     // Ton tableau 2D (la carte)
     int     width;      // Largeur max de la carte
     int     height;     // Hauteur de la carte
-    char    *no_path;   // Chemin texture Nord
-    char    *so_path;   // Chemin texture Sud
-    char    *we_path;   // Chemin texture Ouest
-    char    *ea_path;   // Chemin texture Est
+    char    *no_path;
+    char    *so_path;
+    char    *we_path;
+    char    *ea_path;
     int     floor_col;  // Couleur du sol (format RGB)
     int     ceil_col;   // Couleur du plafond (format RGB)
 }   t_map;
+
+typedef struct s_img//MLX
+{
+	void	*img_ptr;
+	char	*addr;		// adresse mémoire des pixels
+	int		bpp;		// bits par pixel
+	int		line_len;	// longueur d'une ligne en octets
+	int		endian;		// ordre des octets
+}	t_img;
 
 typedef struct s_data
 {
     void        *mlx_ptr;
     void        *win_ptr;
+    t_img		img;
     t_map       map;
     t_player    player;
 }   t_data;
@@ -54,6 +69,8 @@ void	init_map_data(t_data *data);
 void	validate_arguments(int argc, char **argv);
 void	parse_file(char *filename, t_data *data);
 void	parse_map(char *filename, t_data *data);
+void	init_mlx(t_data *data);
+void	draw_minimap(t_data *data);
 
 char	*skip_spaces(char *str);
 

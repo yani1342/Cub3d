@@ -30,3 +30,47 @@ void	init_map_data(t_data *data)
 	data->player.angle = 0;
 }
 
+//mlx_init ?
+// C'est la première chose à faire avec MLX.
+// Ça ouvre la connexion avec le serveur graphique (X11 sur Linux).
+// Sans ça, impossible d'ouvrir une fenêtre ou de dessiner quoi que ce soit.
+
+//mlx_new_window ?
+// Ça crée la fenêtre visible à l'écran.
+// WIN_WIDTH et WIN_HEIGHT sont définis dans cub3d.h (1280x720).
+
+// mlx_new_image ?
+// On crée une image en mémoire sur laquelle on va dessiner.
+// C'est beaucoup plus rapide que de dessiner directement pixel
+// par pixel dans la fenêtre.
+
+//mlx_get_data_addr ?
+// Elle nous donne l'adresse mémoire de l'image (addr).
+// C'est grâce à ça qu'on peut modifier les pixels directement
+// en mémoire avant d'envoyer l'image à la fenêtre.
+
+void	init_mlx(t_data *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	{
+		ft_putstr_fd("Error\nMLX init failed\n", 2);
+		exit(1);
+	}
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"cub3D");
+	if (!data->win_ptr)
+	{
+		ft_putstr_fd("Error\nWindow creation failed\n", 2);
+		exit(1);
+	}
+	data->img.img_ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img.img_ptr)
+	{
+		ft_putstr_fd("Error\nImage creation failed\n", 2);
+		exit(1);
+	}
+	data->img.addr = mlx_get_data_addr(data->img.img_ptr,
+			&data->img.bpp, &data->img.line_len, &data->img.endian);
+}
+

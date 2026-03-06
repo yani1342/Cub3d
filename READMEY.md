@@ -21,3 +21,27 @@ Ps : j'aime trop le truc ou ca creer un fichier avec les .o !
 06/03/2026
 
 Le parsing ressemble beau coup a celui de so_long, sauf pour les vecteurs la x y et pour les couleurssinon c'est similaires.
+
+**MLX**
+MLX ne dessine pas pixel par pixel directement dans la fenêtre — c'est trop lent. À la place on dessine dans une image en mémoire (addr)
+puis on envoie toute l'image d'un coup à la fenêtre avec mlx_put_image_to_window
+
+**Minimap**
+- Parcourir grid case par case
+- Si c'est un '1' → dessiner un carré de couleur foncée (mur)
+- Si c'est un '0' → dessiner un carré clair (sol)
+- Dessiner un petit carré pour le joueur à sa position
+Pour dessiner on a besoin d'une fonction put_pixel qui écrit directement dans img.addr
+*put_pixel* — écrire un pixel dans l'image
+*draw_tile* — dessiner un carré de TILE_SIZE x TILE_SIZE pixels
+*draw_minimap* — parcourir la grille et appeler draw_tile
+
+Alors a partir de là, la vérité je comprends rien au calcul, avec tout les efforts du monde je comprend pas la logique donc je vais écrire des faits histoire de retenir.
+Dans put pixel on a : addr + (y * line_len) + (x * bpp / 8)
+- y * line_len → descend jusqu'à la bonne ligne
+- x * bpp / 8 → avance jusqu'à la bonne colonne
+- bpp / 8 → convertit les bits en octets (32 bits = 4 octets par pixel)
+     **`draw_minimap` — tout assembler**
+Pour chaque case de la grille :
+  - Si c'est un '1' → dessine un carré gris foncé (mur)
+  - Si c'est un '0' → dessine un carré gris clair (sol)
