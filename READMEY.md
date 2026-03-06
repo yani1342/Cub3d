@@ -17,3 +17,7 @@ Je viens de voir qu'on a utiliser *.c pour minishell mais on aurait pas du ptdrr
 Du coup j'ai lister tout les .c comme avant, et j'ai fais le chemin pour la libft. Mais j'ai bien garder ta structure du makefile
 - Important : retirer -g3 avant de push c'est interdit.
 Ps : j'aime trop le truc ou ca creer un fichier avec les .o !
+
+06/03/2026
+
+Le parsing ressemble beau coup a celui de so_long, sauf pour les vecteurs la x y et pour les couleurssinon c'est similaires.

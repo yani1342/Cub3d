@@ -64,6 +64,7 @@ int		process_color(t_data *data, char *trimmed);
 int		parse_rgb(char *color_str);
 int     check_chars(char **grid);
 int	    find_player(t_data *data);
+int	check_map_closed(t_data *data);
 
 void	free_split(char **tab);
 

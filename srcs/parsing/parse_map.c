@@ -67,7 +67,7 @@ static void	fill_grid(char **grid, char *filename)
 			in_map = 1;
         // On stocke la ligne nettoyée dans le tableau
 		if (in_map)
-			grid[i++] = ft_strtrim(line, "\n");
+			grid[i++] = ft_strtrim(line, "\n\r");
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -138,4 +138,6 @@ void	parse_map(char *filename, t_data *data)
 	data->map.width = get_map_width(data->map.grid);
     if (!check_chars(data->map.grid) || !find_player(data))
         exit(1);
+    if (!check_map_closed(data))
+    	exit(1);
 }
