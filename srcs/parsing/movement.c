@@ -12,9 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-# define SPEED		0.1  //vitesse de déplacement
-# define ROT_SPEED	0.05 //vitesse de rotation
-
 // Avant de bouger, on vérifie que la nouvelle case n'est pas un mur '1'.
 // Si c'est un mur, on bloque le mouvement.
 static int	is_wall(t_data *data, double x, double y)

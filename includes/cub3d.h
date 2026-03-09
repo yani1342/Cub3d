@@ -31,6 +31,8 @@
 # define D_KEY		100
 # define LEFT		65361
 # define RIGHT		65363
+# define SPEED		0.1  //vitesse de déplacement
+# define ROT_SPEED	0.05 //vitesse de rotation
 
 typedef struct s_player
 {

@@ -16,13 +16,11 @@ void	free_split(char **tab)
 {
 	int	i;
 
-	printf("free_split called, tab=%p\n", (void *)tab);
 	if (!tab)
 		return ;
 	i = 0;
 	while (tab[i])
 	{
-		printf("freeing tab itself\n");
 		free(tab[i]);
 		i++;
 	}
@@ -31,7 +29,6 @@ void	free_split(char **tab)
 
 void	free_map(t_map *map)
 {
-	printf("free_map called, grid=%p\n", (void *)map->grid);
 	if (map->no_path)
 		free(map->no_path);
 	if (map->so_path)

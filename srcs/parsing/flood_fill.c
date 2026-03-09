@@ -41,11 +41,8 @@ static char	**copy_grid(char **grid, int height)
 
 static int	flood_fill(char **grid, int x, int y, int height)
 {
-	int	width;
-
-	width = ft_strlen(grid[0]);
 	// Sorti du tableau = carte pas fermée
-	if (y < 0 || y >= height || x < 0 || x >= width)
+	if (y < 0 || y >= height || x < 0 || x >= (int)ft_strlen(grid[y]))
 		return (0);
 	// Mur = on s'arrête, c'est bon
 	if (grid[y][x] == '1')
