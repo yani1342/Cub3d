@@ -52,6 +52,10 @@ typedef struct s_map
     char    *so_path;
     char    *we_path;
     char    *ea_path;
+    void    *no_tex;
+    void    *so_tex;
+    void    *we_tex;
+    void    *ea_tex;
     int     floor_col;  // Couleur du sol (format RGB)
     int     ceil_col;   // Couleur du plafond (format RGB)
 }   t_map;
@@ -85,6 +89,7 @@ void	handle_movement(int keycode, t_data *data);
 void	free_map(t_map *map);
 void	free_data(t_data *data);
 void	error_exit(t_data *data, char *msg);
+void	load_textures(t_data *data);
 
 char	*skip_spaces(char *str);
 
@@ -98,6 +103,8 @@ int	    find_player(t_data *data);
 int     check_map_closed(t_data *data);
 int	    handle_keypress(int keycode, t_data *data);
 int	    handle_close(t_data *data);
+int     fill_grid(char **grid, char *filename);
+int 	count_map_lines(char *filename);
 
 void	free_split(char **tab);
 

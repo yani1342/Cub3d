@@ -74,3 +74,24 @@ void	init_mlx(t_data *data)
 			&data->img.bpp, &data->img.line_len, &data->img.endian);
 }
 
+void	load_textures(t_data *data)
+{
+	int	w;
+	int	h;
+
+	data->map.no_tex = mlx_xpm_file_to_image(data->mlx_ptr,
+			data->map.no_path, &w, &h);
+	data->map.so_tex = mlx_xpm_file_to_image(data->mlx_ptr,
+			data->map.so_path, &w, &h);
+	data->map.we_tex = mlx_xpm_file_to_image(data->mlx_ptr,
+			data->map.we_path, &w, &h);
+	data->map.ea_tex = mlx_xpm_file_to_image(data->mlx_ptr,
+			data->map.ea_path, &w, &h);
+	if (!data->map.no_tex || !data->map.so_tex
+		|| !data->map.we_tex || !data->map.ea_tex)
+	{
+		ft_putstr_fd("Error\nFailed to load textures\n", 2);
+		free_data(data);
+		exit(1);
+	}
+}

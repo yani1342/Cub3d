@@ -12,99 +12,21 @@
 
 #include "../../includes/cub3d.h"
 
-static int	count_map_lines(char *filename)
-{
-	int		fd;
-	char	*line;
-	char	*trimmed;
-	int		count;
-	int		in_map;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (-1);
-	count = 0;
-	in_map = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		trimmed = skip_spaces(line);
-		// On détecte le début de la carte, la première ligne qui commence par '1' ou '0'
-		// (les textures/couleurs ne commencent jamais par ces caractères)
-		if (!in_map && (trimmed[0] == '1' || trimmed[0] == '0'))
-			in_map = 1;
-		// Une fois qu'on est dans la carte, on compte chaque ligne
-		if (in_map && trimmed[0] != '\0')
-    count++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (count);
-}
-
-// get_next_line garde le '\n' à la fin de chaque ligne.
-// Si on le garde, la carte sera pleine de '\n' parasites
-// qui vont fausser toutes les vérifications de caractères après.
-// ft_strtrim nettoie ça proprement.
-
-static void	fill_grid(char **grid, char *filename)
-{
-	int		fd;
-	char	*line;
-	char	*trimmed;
-	int		i;
-	int		in_map;
-
-	fd = open(filename, O_RDONLY);
-	i = 0;
-	in_map = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		trimmed = skip_spaces(line);
-		if (!in_map && (trimmed[0] == '1' || trimmed[0] == '0'))
-			in_map = 1;
-        // On stocke la ligne nettoyée dans le tableau
-		if (in_map)
-{
-    grid[i] = ft_strtrim(line, "\n\r");
-    if (grid[i] && grid[i][0] != '\0')
-        i++;
-    else
-        free(grid[i]);
-}
-		free(line);
-		line = get_next_line(fd);
-	}
-	grid[i] = NULL;
-	close(fd);
-}
-
 static char	**store_map(char *filename)
 {
 	char	**grid;
+	int		lines;
 
-	grid = malloc(sizeof(char *) * (count_map_lines(filename) + 1));
-	// On alloue exactement le bon nombre de lignes + 1 pour le NULL final
-	// Le NULL final permet de savoir où s'arrête le tableau
-	// (comme une string se termine par '\0')
-    if (!grid)
+	lines = count_map_lines(filename);
+	if (lines <= 0)
 		return (NULL);
-	fill_grid(grid, filename);
+	grid = malloc(sizeof(char *) * (lines + 1));
+	if (!grid)
+		return (NULL);
+	if (!fill_grid(grid, filename))
+		return (free_split(grid), NULL);
 	return (grid);
 }
-
-// POURQUOI CALCULER LA WIDTH ?
-// Toutes les lignes de la carte n'ont pas forcément la même longueur.
-// Par exemple :
-//   "111111"      <- 6 chars
-//   "100001"      <- 6 chars
-//   "1001"        <- 4 chars (ligne plus courte)
-// On a besoin de connaître la largeur MAX pour :
-// - Vérifier que la carte est bien fermée sur les bords
-// - Allouer des tableaux de la bonne taille plus tard
-// - Afficher la minimap correctement
 
 static int	get_map_width(char **grid)
 {
@@ -124,10 +46,15 @@ static int	get_map_width(char **grid)
 	return (max);
 }
 
-// C'est la fonction principale appelée depuis parse_file.
-// Elle orchestre tout : stocker la carte, calculer ses dimensions,
-// et les sauvegarder dans data pour que tout le reste du programme
-// puisse y accéder.
+static int	get_map_height(char **grid)
+{
+	int	i;
+
+	i = 0;
+	while (grid[i])
+		i++;
+	return (i);
+}
 
 void	parse_map(char *filename, t_data *data)
 {
@@ -135,21 +62,13 @@ void	parse_map(char *filename, t_data *data)
 	if (!data->map.grid)
 	{
 		ft_putstr_fd("Error\nFailed to store map\n", 2);
+		free_map(&data->map);
 		exit(1);
 	}
-	// height = nombre de lignes = taille verticale de la carte
-	// utilisé pour les boucles de vérification et la minimap
-	data->map.height = count_map_lines(filename);
-	// width = largeur max = taille horizontale de la carte
+	data->map.height = get_map_height(data->map.grid);
 	data->map.width = get_map_width(data->map.grid);
-    if (!check_chars(data->map.grid) || !find_player(data))
-	{
-		free_map(&data->map);
-		exit(1);
-	}
+	if (!check_chars(data->map.grid) || !find_player(data))
+		return (free_map(&data->map), exit(1));
 	if (!check_map_closed(data))
-	{
-		free_map(&data->map);
-		exit(1);
-	}
+		return (free_map(&data->map), exit(1));
 }

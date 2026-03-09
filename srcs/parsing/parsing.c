@@ -43,6 +43,7 @@ static int	handle_line(t_data *data, char *line, int fd)
 			|| !process_color(data, trimmed))
 		{
 			free(line);
+			free_map(&data->map);
 			close(fd);
 			exit(1);
 		}
@@ -68,6 +69,7 @@ void	parse_file(char *filename, t_data *data)
 {
 	int		fd;
 	char	*line;
+	char	*tmp;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -80,9 +82,14 @@ void	parse_file(char *filename, t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
+	tmp = get_next_line(fd);    // ← AJOUTER : vide le buffer GNL
+	while (tmp)                 // ← AJOUTER
+	{                           // ← AJOUTER
+		free(tmp);              // ← AJOUTER
+		tmp = get_next_line(fd);// ← AJOUTER
+	}
 	check_missing_elements(data, line, fd);
 	free(line);
 	close(fd);
-	// Maintenant que textures/couleurs sont OK, on stocke la carte
 	parse_map(filename, data); 
 }

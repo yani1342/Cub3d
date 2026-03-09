@@ -24,6 +24,7 @@ SRCS_FILES  = parsing/main.c \
               parsing/init.c \
               parsing/free.c \
 			  parsing/parse_map.c \
+			  parsing/parse_map2.c \
 			  parsing/check_map.c \
 			  parsing/flood_fill.c \
 			  parsing/minimap.c \

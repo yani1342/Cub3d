@@ -63,3 +63,7 @@ Pour tourner, c'est là qu'on utilise cos et sin — ils permettent de faire piv
 
 SPEED = 0.1 → c'est des cases (sur la grille de la carte)
 ROT_SPEED = 0.05 → c'est des radians (une unité d'angle)
+
+09/03
+Les leaks sont ok, il en reste mais ca fait parti de la minilibx
+Y'a le code pour les textures mais je l'ai commenté dans le main pcq il faut d'abord le raycasting. Quand t'aura fini tu pourra décommenté pour voir si ca compile.
