@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 16:33:18 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/09 11:24:23 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/03/11 09:53:29 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 
 	if (!read_file_content(&previous_content, fd))
 		return (NULL);
-	if (!previous_content)          // ← AJOUTER : guard contre NULL
+	if (!previous_content)
 		return (NULL);
 	newline_ptr = ft_strchr(previous_content, '\n');
 	if (newline_ptr)
