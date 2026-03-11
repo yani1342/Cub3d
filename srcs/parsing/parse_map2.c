@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 15:59:04 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/09 15:48:15 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/03/11 09:49:13 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int	count_map_lines(char *filename)
 	while (line)
 	{
 		if (!process_line_count(line, &in_map, &count))
-{
-    free(line);
-    drain_gnl(fd);
-    close(fd);
-    return (-1);
-}
+		{
+			free(line);
+			drain_gnl(fd);
+			close(fd);
+			return (-1);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}

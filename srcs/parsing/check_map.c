@@ -12,9 +12,10 @@
 
 #include "../../includes/cub3d.h"
 
-//parcourir chaque case de grid et vérifier que les seuls caractères autorisés sont
-// 0, 1, N, S, E, W ou " "
-//en même temps on peut trouver le joueur — stocker sa position x, y et son orientation dans t_player
+//parcourir chaque case de grid et vérifier que les seuls caractères 
+// autorisés sont 0, 1, N, S, E, W ou " "
+//en même temps on peut trouver le joueur — stocker 
+// sa position x, y et son orientation dans t_player
 
 static int	is_valid_char(char c)
 {
@@ -85,8 +86,8 @@ static int	handle_player(t_data *data, int i, int j, int *count)
 	data->player.x = j + 0.5;
 	data->player.y = i + 0.5;
 	set_player_dir(&data->player, data->map.grid[i][j]);
-    // On remplace N/S/E/W par '0' dans la grille
-	// car c'est une case vide une fois le joueur extrait
+// On remplace N/S/E/W par '0' dans la grille
+// car c'est une case vide une fois le joueur extrait
 	data->map.grid[i][j] = '0';
 	return (1);
 }

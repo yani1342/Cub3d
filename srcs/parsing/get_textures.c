@@ -22,6 +22,7 @@ char	*skip_spaces(char *str)
 }
 // Trouve le texte "./textures/briques_rouges.xpm" 
 // et le met de côté
+
 char	*extract_path(char *line)
 {
 	char	*path;
@@ -29,7 +30,7 @@ char	*extract_path(char *line)
 
 	if (!line)
 		return (NULL);
-    i = 0;
+	i = 0;
 	while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 		i++;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
@@ -50,6 +51,7 @@ static int	assign_texture(char **texture_path, char *trimmed)
 		return (0);
 	return (1);
 }
+
 //savoir si c'est NORD SUD EST OU OUEST avant d'assigner la texture
 int	process_texture(t_data *data, char *trimmed)
 {
@@ -61,6 +63,5 @@ int	process_texture(t_data *data, char *trimmed)
 		return (assign_texture(&data->map.we_path, trimmed));
 	else if (ft_strncmp(trimmed, "EA ", 3) == 0)
 		return (assign_texture(&data->map.ea_path, trimmed));
-	return (1); 
+	return (1);
 }
-

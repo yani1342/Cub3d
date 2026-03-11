@@ -84,14 +84,14 @@ void	parse_file(char *filename, t_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	tmp = get_next_line(fd);    // ← AJOUTER : vide le buffer GNL
-	while (tmp)                 // ← AJOUTER
-	{                           // ← AJOUTER
-		free(tmp);              // ← AJOUTER
-		tmp = get_next_line(fd);// ← AJOUTER
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		free(tmp);
+		tmp = get_next_line(fd);
 	}
 	check_missing_elements(data, line, fd);
 	free(line);
 	close(fd);
-	parse_map(filename, data); 
+	parse_map(filename, data);
 }

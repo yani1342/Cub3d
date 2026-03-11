@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2026/02/25 10:17:26 by ymsa              #+#    #+#             */
 /*   Updated: 2026/02/25 10:17:26 by ymsa             ###   ########.fr       */
 /*                                                                            */
@@ -12,13 +15,13 @@
 
 #include "../../includes/cub3d.h"
 
-//check la map
+// check la map, minimum "a.cub"
 int	check_extension(char *filename)
 {
 	int	len;
 
 	len = ft_strlen(filename);
-	if (len < 5) //minimum "a.cub"
+	if (len < 5)
 		return (0);
 	if (ft_strncmp(&filename[len - 4], ".cub", 4) == 0)
 		return (1);

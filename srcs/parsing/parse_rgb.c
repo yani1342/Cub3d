@@ -22,7 +22,7 @@ static int	is_numeric(char *str)
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (!ft_isdigit(str[i]))
-		return (0); 
+		return (0);
 	while (ft_isdigit(str[i]))
 		i++;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))

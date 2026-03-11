@@ -46,7 +46,8 @@ static void	move_forward_back(t_data *data, int forward)
 		data->player.y = new_y;
 }
 
-// Pour aller à gauche/droite, on utilise le vecteur perpendiculaire à la direction du regard.
+// Pour aller à gauche/droite, on utilise le vecteur 
+//perpendiculaire à la direction du regard.
 // Perpendiculaire de (dir_x, dir_y) = (-dir_y, dir_x)
 
 static void	move_side(t_data *data, int right)

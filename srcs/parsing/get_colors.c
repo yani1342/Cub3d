@@ -70,12 +70,13 @@ static int	assign_color(int *color_field, char *trimmed)
 		return (free(color_str), 0);
 	*color_field = parse_rgb(color_str);
 	free(color_str);
-	if (*color_field == -1) /* Si parse_rgb renvoie -1, c'est que les chiffres sont faux */
+	if (*color_field == -1) /*Si parse_rgb renvoie -1,les chiffres sont faux*/
 		return (0);
 	return (1);
 }
-//Pour le - 1 : Si floor_col n'est plus à -1, c'est que tu as déjà calculé une couleur pour le sol. 
-// Donc, s'il y a un autre F dans le fichier, c'est un doublon = Erreur.
+//Pour le - 1 : Si floor_col n'est plus à -1, c'est que tu 
+// as déjà calculé une couleur pour le sol. 
+//Donc,s'il y a un autre F dans le fichier,c'est un doublon = Erreur
 
 int	process_color(t_data *data, char *trimmed)
 {
