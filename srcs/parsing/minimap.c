@@ -23,7 +23,6 @@ static void	put_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-//On boucle sur tous les pixels du carré et on leur donne la même couleur. 
 static void	draw_tile(t_data *data, int x, int y, int color)
 {
 	int	i;
@@ -42,15 +41,15 @@ static void	draw_tile(t_data *data, int x, int y, int color)
 	}
 }
 
-static void	draw_player(t_data *data)
+static void	draw_player(t_data *data, int off_x, int off_y)
 {
 	int	px;
 	int	py;
 	int	i;
 	int	j;
 
-	px = (int)(data->player.x * TILE_SIZE) - 4;
-	py = (int)(data->player.y * TILE_SIZE) - 4;
+	px = off_x + (int)(data->player.x * TILE_SIZE) - 4;
+	py = off_y + (int)(data->player.y * TILE_SIZE) - 4;
 	i = 0;
 	while (i < 8)
 	{
@@ -64,7 +63,7 @@ static void	draw_player(t_data *data)
 	}
 }
 
-void	draw_minimap(t_data *data)
+static void	draw_tiles(t_data *data, int off_x, int off_y)
 {
 	int	i;
 	int	j;
@@ -77,15 +76,25 @@ void	draw_minimap(t_data *data)
 		while (j < (int)ft_strlen(data->map.grid[i]))
 		{
 			if (data->map.grid[i][j] == '1')
-				color = 0x333333; // gris foncé = mur
+				color = 0x333333;
 			else
-				color = 0xAAAAAA; // gris clair = sol
-			draw_tile(data, j * TILE_SIZE, i * TILE_SIZE, color);
+				color = 0xAAAAAA;
+			draw_tile(data, off_x + j * TILE_SIZE, off_y + i * TILE_SIZE, color);
 			j++;
 		}
 		i++;
 	}
-	draw_player(data);
+}
+
+void	draw_minimap(t_data *data)
+{
+	int	off_x;
+	int	off_y;
+
+	off_x = WIN_WIDTH - data->map.width * TILE_SIZE - MM_MARGIN;
+	off_y = WIN_HEIGHT - data->map.height * TILE_SIZE - MM_MARGIN;
+	draw_tiles(data, off_x, off_y);
+	draw_player(data, off_x, off_y);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img.img_ptr, 0, 0);
 }

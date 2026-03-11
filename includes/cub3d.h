@@ -33,6 +33,7 @@
 # define RIGHT		65363
 # define SPEED		0.1  //vitesse de déplacement
 # define ROT_SPEED	0.05 //vitesse de rotation
+# define MM_MARGIN  10
 
 typedef struct s_player
 {
@@ -107,5 +108,6 @@ int     fill_grid(char **grid, char *filename);
 int 	count_map_lines(char *filename);
 
 void	free_split(char **tab);
+void	drain_gnl(int fd);
 
 #endif

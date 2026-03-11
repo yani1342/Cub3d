@@ -44,6 +44,7 @@ static int	handle_line(t_data *data, char *line, int fd)
 		{
 			free(line);
 			free_map(&data->map);
+			drain_gnl(fd);
 			close(fd);
 			exit(1);
 		}
@@ -60,6 +61,7 @@ static void	check_missing_elements(t_data *data, char *line, int fd)
 		ft_putstr_fd("Error\nMissing elements in .cub file\n", 2);
 		if (line)
 			free(line);
+		drain_gnl(fd);
 		close(fd);
 		exit(1);
 	}

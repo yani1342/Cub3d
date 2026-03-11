@@ -30,6 +30,7 @@ static int	check_commas(char *str)
 	}
 	if (count == 2)
 		return (1);
+	ft_putstr_fd("Error\nInvalid RGB format\n", 2);
 	return (0);
 }
 

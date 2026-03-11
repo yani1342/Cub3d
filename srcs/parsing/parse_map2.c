@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 15:59:04 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/09 11:46:17 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/03/09 15:48:15 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	process_line_count(char *line, int *in_map, int *count)
 	return (1);
 }
 
-static void	drain_gnl(int fd)
+void	drain_gnl(int fd)
 {
 	char	*line;
 
