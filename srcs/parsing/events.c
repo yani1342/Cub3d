@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/06 13:54:46 by ymsa              #+#    #+#             */
+/*   Updated: 2026/03/06 13:54:46 by ymsa             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3d.h"
+
+int	handle_keypress(int keycode, t_data *data)
+{
+	if (keycode == ESC)
+	{
+		free_data(data);
+		exit(0);
+	}
+	handle_movement(keycode, data);
+	draw_minimap(data);
+	return (0);
+}
+
+int	handle_close(t_data *data)
+{
+	free_data(data);
+	exit(0);
+}

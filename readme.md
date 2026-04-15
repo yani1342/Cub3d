@@ -40,7 +40,6 @@ This project has been created as part of the 42 curriculum :
 ---
 
 ## 🛠️ Compilation
-
 ✔️ Mise à jour des droits d’exécution de la MiniLibX  
 *(nécessaire sur certaines installations Linux)*
 cd minilibx-linux

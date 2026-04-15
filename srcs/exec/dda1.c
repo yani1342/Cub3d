@@ -1,0 +1,59 @@
+#include "../../includes/cub3d.h"
+
+//Vérifie si la case est un mur.
+static int	is_wall_cell(t_data *data, int x, int y)
+{
+	int	row_len;
+
+	if (y < 0 || y >= data->map.height) //sorti de la carte
+		return (1);
+	row_len = (int)ft_strlen(data->map.grid[y]);  
+	if (x < 0 || x >= row_len) //sorti de la ligne
+		return (1);
+	return (data->map.grid[y][x] == '1'); //mur
+}
+
+//Boucle principale du DDA.
+void	dda_loop(t_dda *c) // *c = dda struct pointer pour accéder aux variables internes du DDA
+{
+	int	hit; // 0 si le rayon n'a pas touché un mur, 1 sinon
+	int	guard; // nombre de cases traversées par le rayon
+
+	hit = 0;
+	guard = 0;
+	while (hit == 0 && guard < c->game->map.width + c->game->map.height + 32) // limite de cases traversées par le rayon	
+	{
+		guard++;
+		if (c->next_x < c->next_y) 
+		{
+			c->next_x += c->step_dist_x;
+			c->ray->map_x += c->step_x;
+			c->ray->side = 0;
+		}
+		else
+		{
+			c->next_y += c->step_dist_y;
+			c->ray->map_y += c->step_y;
+			c->ray->side = 1;
+		}
+		if (is_wall_cell(c->game, c->ray->map_x, c->ray->map_y))
+			hit = 1;
+	}
+}
+
+
+//Cast le rayon  = lancer/tracer un rayon depuis le joueur dans une direction donnée jusquà ce qu'il touche un mur
+void	dda_cast(t_data *data, t_ray *ray)
+{
+	t_dda	c;
+
+	c.game = data;
+	c.ray = ray;
+	dda_init_pos(&c);  // Initialise la position du rayon.
+	dda_step_dist(&c); // Calcule la distance entre le rayon et le mur.
+	dda_init_steps(&c); // Initialise le pas sur X et Y.
+	dda_init_next_distances(&c); // Initialise les prochaines distances sur X et Y.
+	dda_loop(&c); // Boucle principale du DDA.
+	dda_compute_perp_dist(&c); // Calcule la distance perpendiculaire entre le rayon et le mur.	
+}
+
