@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 15:59:04 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/04 15:59:04 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/04/17 19:04:32 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	parse_map(char *filename, t_data *data)
 	if (!data->map.grid)
 	{
 		ft_putstr_fd("Error\nFailed to store map\n", 2);
-		free_map(&data->map);
+		free_map(&data->map, NULL);
 		exit(1);
 	}
 	data->map.height = get_map_height(data->map.grid);
 	data->map.width = get_map_width(data->map.grid);
 	if (!check_chars(data->map.grid) || !find_player(data))
-		return (free_map(&data->map), exit(1));
+		return (free_map(&data->map, NULL), exit(1));
 	if (!check_map_closed(data))
-		return (free_map(&data->map), exit(1));
+		return (free_map(&data->map, NULL), exit(1));
 }

@@ -27,7 +27,7 @@ void	free_split(char **tab)
 	free(tab);
 }
 
-void	free_map(t_map *map)
+void	free_map(t_map *map, void *mlx)
 {
 	if (map->no_path)
 		free(map->no_path);
@@ -37,6 +37,14 @@ void	free_map(t_map *map)
 		free(map->we_path);
 	if (map->ea_path)
 		free(map->ea_path);
+	if (mlx && map->no_tex.img_ptr)
+		mlx_destroy_image(mlx, map->no_tex.img_ptr);
+	if (mlx && map->so_tex.img_ptr)
+		mlx_destroy_image(mlx, map->so_tex.img_ptr);
+	if (mlx && map->we_tex.img_ptr)
+		mlx_destroy_image(mlx, map->we_tex.img_ptr);
+	if (mlx && map->ea_tex.img_ptr)
+		mlx_destroy_image(mlx, map->ea_tex.img_ptr);
 	if (map->grid)
 		free_split(map->grid);
 }
@@ -56,13 +64,13 @@ static void	free_mlx(t_data *data)
 
 void	free_data(t_data *data)
 {
-	free_map(&data->map);
+	free_map(&data->map, NULL);
 	free_mlx(data);
 }
 
 void	error_exit(t_data *data, char *msg)
 {
 	ft_putstr_fd(msg, 2);
-	free_map(&data->map);
+	free_map(&data->map, NULL);
 	exit(1);
 }

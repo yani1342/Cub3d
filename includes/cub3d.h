@@ -122,7 +122,7 @@ void	parse_map(char *filename, t_data *data);
 void	init_mlx(t_data *data);
 void	draw_minimap(t_data *data);
 void	handle_movement(int keycode, t_data *data);
-void	free_map(t_map *map);
+void	free_map(t_map *map, void *mlx);
 void	free_data(t_data *data);
 void	error_exit(t_data *data, char *msg);
 void	load_textures(t_data *data);
@@ -141,6 +141,7 @@ int	handle_keypress(int keycode, t_data *data);
 int	handle_close(t_data *data);
 int	fill_grid(char **grid, char *filename);
 int	count_map_lines(char *filename);
+int	is_readable(char *filename);
 
 void	free_split(char **tab);
 void	drain_gnl(int fd);

@@ -43,7 +43,7 @@ static int	handle_line(t_data *data, char *line, int fd)
 			|| !process_color(data, trimmed))
 		{
 			free(line);
-			free_map(&data->map);
+			free_map(&data->map, NULL);
 			drain_gnl(fd);
 			close(fd);
 			exit(1);
