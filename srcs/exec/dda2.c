@@ -24,7 +24,6 @@ void	dda_step_dist(t_dda *c)
 		c->step_dist_y = fabs(1.0 / c->ray->ray_dir_y);
 }
 
-
 void	dda_init_steps(t_dda *c)
 {
 	if (c->ray->ray_dir_x < 0)

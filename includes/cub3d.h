@@ -38,6 +38,10 @@
 # define ROT_SPEED 0.05 // vitesse de rotation
 # define MM_MARGIN 10 // taille de la marge de carte de la minimap
 # define FOV 0.66
+# define HIT_NORTH 0 
+# define HIT_SOUTH 1
+# define HIT_EAST 2
+# define HIT_WEST 3
 
 typedef struct s_player
 {
@@ -57,6 +61,7 @@ typedef struct s_ray
 	int		map_y; // où en ait l'avancer du rayon sur l'axe Y
 	int		side; //lorsqu'un rayon touche un mur en X ou Y
 	double	perp_wall_dist; // Distance perpendiculaire entre le rayon et le mur
+	int		hit_wall; // face touchee: N/S/E/W
 }	t_ray;
 
 typedef struct s_img // MLX
@@ -145,6 +150,7 @@ void	draw_floor_ceiling(t_data *data);
 void	draw_pixel(t_data *data, int x, int y, int color);
 void	ray_direction(t_player *player, int x, t_ray *ray);
 void	rays_columns(t_data *data);
+void	render_frame(t_data *data);
 void	dda_cast(t_data *data, t_ray *ray);
 void	dda_init_pos(t_dda *c);
 void	dda_step_dist(t_dda *c);

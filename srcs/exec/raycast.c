@@ -1,28 +1,5 @@
 #include "../../includes/cub3d.h"
 
-void	draw_floor_ceiling(t_data *data)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		if (y < WIN_HEIGHT / 2)
-			color = data->map.ceil_col;   // plafond
-		else
-			color = data->map.floor_col;  // sol
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			draw_pixel(data, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 //calcul un rayon, pour une colonne x
 void	ray_direction(t_player *player, int x, t_ray *ray)
 {
@@ -33,30 +10,49 @@ void	ray_direction(t_player *player, int x, t_ray *ray)
 	ray->ray_dir_y = player->dir_y + player->plane_y * camera_x;
 }
 
-//Dessine une tranche verticale de mur pour la colonne x.
-void	draw_wall_slice(t_data *data, int x, t_ray *ray)
+static void	get_slice(t_ray *ray, int *draw_start, int *draw_end)
 {
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
-	int	y;
-	int	color;
+	int	line_height; //hauteur du mur
+
 	if (ray->perp_wall_dist <= 0.0001)
 		line_height = WIN_HEIGHT;
 	else
 		line_height = (int)(WIN_HEIGHT / ray->perp_wall_dist);
-	draw_start = -line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = line_height / 2 + WIN_HEIGHT / 2;
-	if (draw_end >= WIN_HEIGHT)
-		draw_end = WIN_HEIGHT - 1;
+	*draw_start = -line_height / 2 + WIN_HEIGHT / 2;
+	if (*draw_start < 0)
+		*draw_start = 0;
+	*draw_end = line_height / 2 + WIN_HEIGHT / 2;
+	if (*draw_end >= WIN_HEIGHT)
+		*draw_end = WIN_HEIGHT - 1;
+}
+
+static int	wall_color(t_ray *ray)
+{
+	if (ray->hit_wall == HIT_NORTH)
+		return (0x00CC3333); //rouge
+	if (ray->hit_wall == HIT_SOUTH)
+		return (0x00992222); //vert
+	if (ray->hit_wall == HIT_EAST)
+		return (0x003333CC); //bleu
+	if (ray->hit_wall == HIT_WEST)
+		return (0x00222299); //jaune
 	if (ray->side == 0)
-		color = 0x00CC0000; /* mur vertical: rouge fonce */
-	else
-		color = 0x00990000; /* mur horizontal: rouge encore plus fonce */
+		return (0x00CC0000); //rouge
+	return (0x00990000); //vert
+}
+
+//Dessine une tranche verticale de mur pour la colonne x.
+void	draw_wall_slice(t_data *data, int x, t_ray *ray)
+{
+	int	draw_start;
+	int	draw_end;
+	int	y;
+	int	color;
+
+	get_slice(ray, &draw_start, &draw_end);
+	color = wall_color(ray);
 	y = draw_start;
-	while (y <= draw_end)
+	while (y <= draw_end) //dessine la tranche de mur
 	{
 		draw_pixel(data, x, y, color);
 		y++;
@@ -79,3 +75,4 @@ void	rays_columns(t_data *data)
 		x++;
 	}
 }
+

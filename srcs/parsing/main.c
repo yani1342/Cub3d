@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	parse_file(argv[1], &data);
 	init_mlx(&data);
 	//load_textures(&data);
-	draw_minimap(&data);
+	render_frame(&data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, handle_keypress, &data);
 	mlx_hook(data.win_ptr, 17, 0, handle_close, &data);
 	mlx_loop(data.mlx_ptr);

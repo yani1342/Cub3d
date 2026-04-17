@@ -35,9 +35,24 @@ Attention!!! Nom du Projet "cube3D" avec D majuscule (cf fiche subject)
      C’est pour ça que c’est rapide et très adapté à cub3d.
      Et “cast a ray” signifie lancer/tracer un rayon depuis le joueur dans une direction donnée pour trouver ce qu’il touche. ( via dda_loop & dda_compute_perp_dist permet de corriger la bonne projection de l'image pour pas que les murs se courbent)
 
+Couleur unie selon face :
+     - `side == 0` (mur vertical) vs `side == 1` (mur horizontal)
+     - variante N/S/E/W via signe de `step_x/step_y`
+     si side == 0 et step_x > 0 -> west /gauche 
+     si side == 0 et step_x < 0 -> east / droite
+     si side == 1 et step_y > 0 -> North/haut
+     si side == 1 et step_y < 0 -> south/ bas
+     En raycasting classique cub3d, le “cube” est rendu avec 6 faces, en 4 murs ( les 4 directions) “face latérale N/S/E/W”  au sens du DDA mais le plafond et le sol sont traités à part (draw_floor_ceiling, couleurs / textures sol-plafond)
 
-
-
+Frame et image
+     Dessin = écriture dans data->img (via draw_pixel).
+     Affichage = avec mlx_put_image_to_window une fois la frame prête.
+     L’image MLX (data->img) = C’est toute la fenêtre : une seule image de WIN_WIDTH × WIN_HEIGHT (dans le header, typiquement 1280 × 720). C’est là qu’on dessine sol, plafond, murs, minimap, avec mlx_put_image_to_window. Ce n’est pas une case de la map.
+     Frame = c’est un instantané montrer à l’écran à un moment donné, et à chaque séquence (déplacement, rotation, etc.) un nouveau frame est créé.
+     la fc° render_frame est le point unique qui construit une image complète pour la fenêtre, puis l’affiche
 
      
+
+
+
 
