@@ -30,6 +30,12 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/minimap.c \
 			  parsing/events.c \
 			  parsing/movement.c \
+			  exec/texture.c \
+			  exec/camera.c \
+			  exec/raycast.c \
+			  exec/dda1.c \
+			  exec/dda2.c \
+			  exec/draw.c \
 
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRCS_FILES))
 OBJS        = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
