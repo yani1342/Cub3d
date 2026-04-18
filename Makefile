@@ -33,6 +33,7 @@ SRCS_FILES  = parsing/main.c \
 			  exec/texture.c \
 			  exec/camera.c \
 			  exec/raycast.c \
+			  exec/wall_tex.c \
 			  exec/dda1.c \
 			  exec/dda2.c \
 			  exec/draw.c \

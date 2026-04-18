@@ -10,6 +10,7 @@ void	ray_direction(t_player *player, int x, t_ray *ray)
 	ray->ray_dir_y = player->dir_y + player->plane_y * camera_x;
 }
 
+//calcule le début et la fin de la tranche de mur à dessiner
 static void	get_slice(t_ray *ray, int *draw_start, int *draw_end)
 {
 	int	line_height; //hauteur du mur
@@ -41,15 +42,27 @@ static int	wall_color(t_ray *ray)
 	return (0x00990000); //vert
 }
 
+
 //Dessine une tranche verticale de mur pour la colonne x.
 void	draw_wall_slice(t_data *data, int x, t_ray *ray)
 {
-	int	draw_start;
-	int	draw_end;
-	int	y;
-	int	color;
+	int			draw_start;
+	int			draw_end;
+	int			y;
+	int			color;
+	t_img		*tex;
+	t_tex_column	seg;
 
-	get_slice(ray, &draw_start, &draw_end);
+	get_slice(ray, &draw_start, &draw_end);  //calcule le début et la fin de la tranche de mur à dessiner
+	tex = get_hit_wall_tex(data, ray); //récupère la texture du mur touché
+	if (tex && tex->addr)
+	{
+		seg.start = draw_start;
+		seg.end = draw_end;
+		seg.tex = tex;
+		draw_tex_columns(data, ray, x, &seg); //dessine la texture du mur du rayon x
+		return ;
+	}
 	color = wall_color(ray);
 	y = draw_start;
 	while (y <= draw_end) //dessine la tranche de mur

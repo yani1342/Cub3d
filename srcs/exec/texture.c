@@ -1,5 +1,6 @@
 #include "../../includes/cub3d.h"
 
+//charge une seule texture
 int	load_one_texture(t_data *data, t_img *tex, char *path)
 {
 	int	w;
@@ -14,8 +15,7 @@ int	load_one_texture(t_data *data, t_img *tex, char *path)
 	tex->height = h;
 	return (1);
 }
-
-
+//charge les textures des murs
 void	load_textures(t_data *data)
 {
 	if (!load_one_texture(data, &data->map.no_tex, data->map.no_path)
@@ -28,4 +28,8 @@ void	load_textures(t_data *data)
 		exit(1);
 	}
 }
+
+
+
+
 

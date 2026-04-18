@@ -1,5 +1,6 @@
 #include "../../includes/cub3d.h"
 
+//dessine un pixel dans l'image
 void	draw_pixel(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -34,7 +35,7 @@ void	draw_floor_ceiling(t_data *data)
 	}
 }
 
-void	render_frame(t_data *data)
+void	frame_maker(t_data *data)
 {
 	draw_floor_ceiling(data);
 	rays_columns(data);

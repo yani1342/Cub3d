@@ -49,10 +49,19 @@ Frame et image
      Affichage = avec mlx_put_image_to_window une fois la frame prête.
      L’image MLX (data->img) = C’est toute la fenêtre : une seule image de WIN_WIDTH × WIN_HEIGHT (dans le header, typiquement 1280 × 720). C’est là qu’on dessine sol, plafond, murs, minimap, avec mlx_put_image_to_window. Ce n’est pas une case de la map.
      Frame = c’est un instantané montrer à l’écran à un moment donné, et à chaque séquence (déplacement, rotation, etc.) un nouveau frame est créé.
-     la fc° render_frame est le point unique qui construit une image complète pour la fenêtre, puis l’affiche
+     la fc° frame_maker est le point unique qui construit une image complète pour la fenêtre, puis l’affiche
 
-     
+texture
+     process_texture ( dans le parsing)
+     - lit les lignes NO/SO/WE/EA du .cub
+     - stocke des chemins de fichiers (no_path, so_path, etc.)
+     - mais ne dessine rien, ne lit aucun pixel texture
 
-
-
-
+     fichier.cub -> process_texture -> récupère les chemins
+     chemins -> load_textures (charge) ->  les images en mémoire
+     *** main -> rays_columns -> draw_wall_slice***
+     get slice -> donne la tranche rayons qui devra être dessiner
+     c'est a dire quelle partie image dessiner pour chaque rayons 
+     DDA hit -> get_hit_wall_tex -> récupère l'image de la face touchée
+     -> draw_tex_columns avec get_tex_to_draw (wall_x, tex_x et flip) qui récupère 
+     la texture du rayon à dessiner puis get_pixel_tex -> obtient les couleurs pixel (une à une) -> draw_pixel les écrits = les dessine

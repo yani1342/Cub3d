@@ -53,6 +53,8 @@ static int	assign_texture(char **texture_path, char *trimmed)
 }
 
 //savoir si c'est NORD SUD EST OU OUEST avant d'assigner la texture
+//lit les lignes NO/SO/WE/EA du .cub
+//stocke des chemins de fichiers (no_path, so_path, etc.)
 int	process_texture(t_data *data, char *trimmed)
 {
 	if (ft_strncmp(trimmed, "NO ", 3) == 0)

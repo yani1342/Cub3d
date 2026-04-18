@@ -75,6 +75,16 @@ typedef struct s_img // MLX
 	int height; // hauteur de l'image
 } t_img;
 
+typedef struct s_tex_column
+{
+	int		start;
+	int		end;
+	t_img	*tex;
+	int		tex_x;
+	double	step;
+	double	pos;
+}	t_tex_column;
+
 typedef struct s_map
 {
 	char	**grid; // Grille de la carte
@@ -126,6 +136,7 @@ void	free_map(t_map *map);
 void	free_data(t_data *data);
 void	error_exit(t_data *data, char *msg);
 void	load_textures(t_data *data);
+t_img	*get_hit_wall_tex(t_data *data, t_ray *ray);
 
 char	*skip_spaces(char *str);
 
@@ -150,7 +161,7 @@ void	draw_floor_ceiling(t_data *data);
 void	draw_pixel(t_data *data, int x, int y, int color);
 void	ray_direction(t_player *player, int x, t_ray *ray);
 void	rays_columns(t_data *data);
-void	render_frame(t_data *data);
+void	frame_maker(t_data *data);
 void	dda_cast(t_data *data, t_ray *ray);
 void	dda_init_pos(t_dda *c);
 void	dda_step_dist(t_dda *c);
@@ -159,5 +170,6 @@ void	dda_init_next_distances(t_dda *c);
 void	dda_loop(t_dda *c);
 void	dda_compute_perp_dist(t_dda *c);
 void	draw_wall_slice(t_data *data, int x, t_ray *ray);
+void	draw_tex_columns(t_data *data, t_ray *ray, int x, t_tex_column *seg);
 
 #endif
