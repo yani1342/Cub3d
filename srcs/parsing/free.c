@@ -45,7 +45,6 @@ static void	free_mlx(t_data *data)
 {
 	if (!data->mlx_ptr)
 		return ;
-
 	if (data->map.no_tex.img_ptr)
 		mlx_destroy_image(data->mlx_ptr, data->map.no_tex.img_ptr);
 	if (data->map.so_tex.img_ptr)
@@ -56,14 +55,11 @@ static void	free_mlx(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->map.ea_tex.img_ptr);
 	if (data->img.img_ptr)
 		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
-
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 }
-
 
 void	free_data(t_data *data)
 {

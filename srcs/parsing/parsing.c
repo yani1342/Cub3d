@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-//Vérifie si nos 6 tiroirs sont bien remplis
+// Vérifie si nos 6 tiroirs sont bien remplis
 int	check_all_elements(t_data *data)
 {
 	if (data->map.no_path && data->map.so_path && data->map.we_path

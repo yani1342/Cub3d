@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_tex.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/18 20:24:50 by marvin            #+#    #+#             */
+/*   Updated: 2026/04/18 20:24:50 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../../includes/cub3d.h"
 
-//récupère la texture du mur touché
 t_img	*get_hit_wall_tex(t_data *data, t_ray *ray)
 {
 	if (ray->hit_wall == HIT_NORTH)
@@ -14,35 +24,43 @@ t_img	*get_hit_wall_tex(t_data *data, t_ray *ray)
 	return (NULL);
 }
 
-//calcule la coordonnée X de la texture à afficher
 static void	get_tex_to_draw(t_data *data, t_ray *ray, t_img *tex, int *tex_x)
 {
-	double	wall_x; // pourcentage du point d'impact sur la case du mur touché (sur toute la longeur)
+	double	wall_x;
 
-	if (ray->side == 0) 
+	if (ray->side == 0)
 		wall_x = data->player.y + ray->perp_wall_dist * ray->ray_dir_y;
-	else 
+	else
 		wall_x = data->player.x + ray->perp_wall_dist * ray->ray_dir_x;
-	wall_x -= floor(wall_x); // valeur fractionnaire entre 0 et 1 ( fc° math)
-	*tex_x = (int)(wall_x * (double)tex->width); // même information que wall_x mais en pixels(bitmap image)
-	if ((ray->side == 0 && ray->ray_dir_x > 0) // flip : correction du raycasting contre le mirroring effect
-		|| (ray->side == 1 && ray->ray_dir_y < 0)) 
+	wall_x -= floor(wall_x);
+	if (wall_x >= 1.0)
+		wall_x = 1.0 - 1e-9;
+	*tex_x = (int)(wall_x * (double)tex->width);
+	if ((ray->side == 0 && ray->ray_dir_x > 0) || (ray->side == 1
+			&& ray->ray_dir_y < 0))
 		*tex_x = tex->width - *tex_x - 1;
+	if (tex->width > 0)
+	{
+		if (*tex_x < 0)
+			*tex_x = 0;
+		if (*tex_x >= tex->width)
+			*tex_x = tex->width - 1;
+	}
+	else
+		*tex_x = 0;
 }
 
-//récupère la couleur du pixel de la texture
 static int	get_pixel_tex(t_img *tex, int x, int y)
 {
 	char	*dst;
 
-	if (!tex || !tex->addr || x < 0 || y < 0
-		|| x >= tex->width || y >= tex->height)
+	if (!tex || !tex->addr || x < 0 || y < 0 || x >= tex->width
+		|| y >= tex->height)
 		return (0);
 	dst = tex->addr + (y * tex->line_len) + (x * tex->bpp / 8);
 	return (*(unsigned int *)dst);
 }
 
-//boule qui dessine la texture du mur sur le rayon x
 static void	tex_loop(t_data *data, int x, t_tex_column *seg)
 {
 	int	tex_y;
@@ -54,17 +72,17 @@ static void	tex_loop(t_data *data, int x, t_tex_column *seg)
 			tex_y = 0;
 		if (tex_y >= seg->tex->height)
 			tex_y = seg->tex->height - 1;
-		draw_pixel(data, x, seg->start, get_pixel_tex(seg->tex, seg->tex_x, tex_y));
+		draw_pixel(data, x, seg->start, get_pixel_tex(seg->tex, seg->tex_x,
+				tex_y));
 		seg->pos += seg->step;
 		seg->start++;
 	}
 }
 
-//Pour dessiner la texture du mur sur rayon x
 void	draw_tex_columns(t_data *data, t_ray *ray, int x, t_tex_column *seg)
 {
-	int		line_height;
-	int		start;
+	int	line_height;
+	int	start;
 
 	start = seg->start;
 	get_tex_to_draw(data, ray, seg->tex, &seg->tex_x);

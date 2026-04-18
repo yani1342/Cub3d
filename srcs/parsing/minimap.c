@@ -68,8 +68,8 @@ static void	draw_tiles(t_data *data, int off_x, int off_y)
 				color = 0x333333;
 			else
 				color = 0xAAAAAA;
-			draw_tile(data, off_x + j * TILE_SIZE, off_y + i
-				* TILE_SIZE, color);
+			draw_tile(data, off_x + j * TILE_SIZE, off_y + i * TILE_SIZE,
+				color);
 			j++;
 		}
 		i++;

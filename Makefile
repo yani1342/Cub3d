@@ -31,7 +31,6 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/events.c \
 			  parsing/movement.c \
 			  exec/texture.c \
-			  exec/camera.c \
 			  exec/raycast.c \
 			  exec/wall_tex.c \
 			  exec/dda1.c \
@@ -89,7 +88,7 @@ $(LIBFT_LIB):
 # ===========================
 norm:
 	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) include/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
+	@norminette $(SRCS) includes/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
 
 # ===========================
 #      CLEAN RULES
