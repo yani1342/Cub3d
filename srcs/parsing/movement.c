@@ -79,22 +79,22 @@ static void	rotate(t_data *data, int right)
 {
 	double	old_dir_x;
 	double	old_plane_x;
-	double	angle;
+	double	turn;
 
 	if (right)
-		angle = -ROT_SPEED;
+		turn = -ROT_SPEED;
 	else
-		angle = ROT_SPEED;
+		turn = ROT_SPEED;
 	old_dir_x = data->player.dir_x;
-	data->player.dir_x = old_dir_x * cos(angle)
-		- data->player.dir_y * sin(angle);
-	data->player.dir_y = old_dir_x * sin(angle)
-		+ data->player.dir_y * cos(angle);
+	data->player.dir_x = old_dir_x * cos(turn)
+		- data->player.dir_y * sin(turn);
+	data->player.dir_y = old_dir_x * sin(turn)
+		+ data->player.dir_y * cos(turn);
 	old_plane_x = data->player.plane_x;
-	data->player.plane_x = old_plane_x * cos(angle)
-		- data->player.plane_y * sin(angle);
-	data->player.plane_y = old_plane_x * sin(angle)
-		+ data->player.plane_y * cos(angle);
+	data->player.plane_x = old_plane_x * cos(turn)
+		- data->player.plane_y * sin(turn);
+	data->player.plane_y = old_plane_x * sin(turn)
+		+ data->player.plane_y * cos(turn);
 }
 
 void	handle_movement(int keycode, t_data *data)
