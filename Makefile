@@ -106,6 +106,11 @@ fclean: clean
 re: fclean all
 
 # ===========================
+#      BONUS
+# ===========================
+bonus: all
+
+# ===========================
 #      PHONY
 # ===========================
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm bonus
