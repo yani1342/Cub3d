@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:19:00 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/11 09:46:39 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/04/19 00:30:59 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,4 @@ void	draw_minimap(t_data *data)
 	off_y = WIN_HEIGHT - data->map.height * TILE_SIZE - MM_MARGIN;
 	draw_tiles(data, off_x, off_y);
 	draw_player(data, off_x, off_y);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->img.img_ptr, 0, 0);
 }

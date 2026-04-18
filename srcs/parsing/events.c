@@ -20,7 +20,7 @@ int	handle_keypress(int keycode, t_data *data)
 		exit(0);
 	}
 	handle_movement(keycode, data);
-	render_frame(data);
+	frame_maker(data);
 	return (0);
 }
 

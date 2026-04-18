@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/18 20:24:30 by marvin            #+#    #+#             */
+/*   Updated: 2026/04/18 20:24:30 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../../includes/cub3d.h"
 
-//calcul un rayon, pour une colonne x
 void	ray_direction(t_player *player, int x, t_ray *ray)
 {
 	double	camera_x;
@@ -12,7 +22,7 @@ void	ray_direction(t_player *player, int x, t_ray *ray)
 
 static void	get_slice(t_ray *ray, int *draw_start, int *draw_end)
 {
-	int	line_height; //hauteur du mur
+	int	line_height;
 
 	if (ray->perp_wall_dist <= 0.0001)
 		line_height = WIN_HEIGHT;
@@ -29,38 +39,44 @@ static void	get_slice(t_ray *ray, int *draw_start, int *draw_end)
 static int	wall_color(t_ray *ray)
 {
 	if (ray->hit_wall == HIT_NORTH)
-		return (0x00CC3333); //rouge
+		return (0x00CC3333);
 	if (ray->hit_wall == HIT_SOUTH)
-		return (0x00992222); //vert
+		return (0x00992222);
 	if (ray->hit_wall == HIT_EAST)
-		return (0x003333CC); //bleu
+		return (0x003333CC);
 	if (ray->hit_wall == HIT_WEST)
-		return (0x00222299); //jaune
+		return (0x00222299);
 	if (ray->side == 0)
-		return (0x00CC0000); //rouge
-	return (0x00990000); //vert
+		return (0x00CC0000);
+	return (0x00990000);
 }
 
-//Dessine une tranche verticale de mur pour la colonne x.
 void	draw_wall_slice(t_data *data, int x, t_ray *ray)
 {
-	int	draw_start;
-	int	draw_end;
-	int	y;
-	int	color;
+	int				draw_start;
+	int				draw_end;
+	int				y;
+	t_img			*tex;
+	t_tex_column	seg;
 
 	get_slice(ray, &draw_start, &draw_end);
-	color = wall_color(ray);
-	y = draw_start;
-	while (y <= draw_end) //dessine la tranche de mur
+	tex = get_hit_wall_tex(data, ray);
+	if (tex && tex->addr)
 	{
-		draw_pixel(data, x, y, color);
+		seg.start = draw_start;
+		seg.end = draw_end;
+		seg.tex = tex;
+		draw_tex_columns(data, ray, x, &seg);
+		return ;
+	}
+	y = draw_start;
+	while (y <= draw_end)
+	{
+		draw_pixel(data, x, y, wall_color(ray));
 		y++;
 	}
 }
 
-//c'est ça qui fait l'éventail de rayons
-//ce qui permet de fabriquer l'image
 void	rays_columns(t_data *data)
 {
 	int		x;
@@ -75,4 +91,3 @@ void	rays_columns(t_data *data)
 		x++;
 	}
 }
-

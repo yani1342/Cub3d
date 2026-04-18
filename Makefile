@@ -31,8 +31,8 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/events.c \
 			  parsing/movement.c \
 			  exec/texture.c \
-			  exec/camera.c \
 			  exec/raycast.c \
+			  exec/wall_tex.c \
 			  exec/dda1.c \
 			  exec/dda2.c \
 			  exec/draw.c \
@@ -106,6 +106,11 @@ fclean: clean
 re: fclean all
 
 # ===========================
+#      BONUS
+# ===========================
+bonus: all
+
+# ===========================
 #      PHONY
 # ===========================
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm bonus
