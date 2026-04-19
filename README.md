@@ -4,11 +4,27 @@ Cub3D
 
 **Description**
 
+cub3D is a 42 School project inspired by the Wolfenstein 3D engine. It is a small raycaster: you move on a 2D map while the program renders a first-person 3D view
+
 **Instruction**
+You will need to instal the minilibx-linux and put it in the folder cub3d.
 
-**Submission**
+How to build :
+cd minilibx-linux
+chmod +x configure
+make
+cd ..
+make
 
-**Requirements**
+How to run :
+./cub3D maps/good.cub
+
+How to play :
+
+W / A / S / D — move
+Left / Right arrows — rotate
+ESC — quit
+
 
 **Resources**
 We used AI to know how we would split the project for 2 people.

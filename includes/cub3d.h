@@ -26,7 +26,7 @@
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define TILE_SIZE 32 // échelle de la minimap en pixels (une case = 1 unité grille de la map) un carré de 32x32 pixels
+# define TILE_SIZE 20 // échelle de la minimap en pixels (une case = 1 unité grille de la map) un carré de 32x32 pixels
 # define ESC 65307
 # define W_KEY 119
 # define S_KEY 115
