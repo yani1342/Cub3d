@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/06 12:46:42 by ymsa              #+#    #+#             */
+/*   Updated: 2026/03/06 12:46:42 by ymsa             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3d.h"
+
+static char	**copy_grid(char **grid, int height)
+{
+	char	**copy;
+	int		i;
+
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = ft_strdup(grid[i]);
+		if (!copy[i])
+			return (free_split(copy), NULL);
+		i++;
+	}
+	copy[height] = NULL;
+	return (copy);
+}
+
+static int	flood_fill(char **grid, int x, int y, int height)
+{
+	if (y < 0 || y >= height || x < 0 || x >= (int)ft_strlen(grid[y]))
+		return (0);
+	if (grid[y][x] == '1')
+		return (1);
+	if (grid[y][x] == 'V')
+		return (1);
+	grid[y][x] = 'V';
+	if (!flood_fill(grid, x + 1, y, height))
+		return (0);
+	if (!flood_fill(grid, x - 1, y, height))
+		return (0);
+	if (!flood_fill(grid, x, y + 1, height))
+		return (0);
+	if (!flood_fill(grid, x, y - 1, height))
+		return (0);
+	return (1);
+}
+
+int	check_map_closed(t_data *data)
+{
+	char	**copy;
+	int		y;
+	int		x;
+
+	copy = copy_grid(data->map.grid, data->map.height);
+	if (!copy)
+		return (0);
+	y = 0;
+	while (copy[y])
+	{
+		x = 0;
+		while (copy[y][x])
+		{
+			if (ft_strchr("0NSEW", copy[y][x]))
+			{
+				if (!flood_fill(copy, x, y, data->map.height))
+					return (free_split(copy),
+						ft_putstr_fd("Error\nMap not closed\n", 2), 0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (free_split(copy), 1);
+}
