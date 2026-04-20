@@ -18,11 +18,13 @@ cub3D is a 42 School project inspired by the Wolfenstein 3D engine. It is a smal
 You will need to install the minilibx-linux and put it in the folder cub3d.
 
 - How to build:
+```bash
 cd minilibx-linux
 chmod +x configure
 make
 cd ..
 make
+```
 
 - How to run :
 ./cub3D maps/good.cub
@@ -34,6 +36,7 @@ ESC — quit
 
 - Project layout :
 
+```
 cub3d/
 ├── srcs/
 ├── includes/
@@ -42,27 +45,35 @@ cub3d/
 ├── libft/
 ├── Makefile
 └── readme.md
+```
 
 **Resources**
 We used AI to know how we would split the project for 2 people :
 - **ymsa** — 2D part  
 - **vhorta-s** — 3D part
 
--   Raycasting Tutorial (in Python) :
+-Raycasting Tutorial (in Python):
 
-https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
-https://www.youtube.com/watch?v=rnWRs_BBgXc  
-https://www.youtube.com/watch?v=gYRrGTC7GtA&list=PLCXqoZAc8-tyDSaO8jnabOEFhdTQfx77_&index=1  
-https://www.youtube.com/watch?v=-DX84gp7csM&list=PLpKIEFIlPlKbpTu78AqNnyozX2mZf3PF-&index=2
-https://www.youtube.com/watch?v=ZAlMicFhHmM
+    https://youtu.be/E18bSJezaUE
 
--   Cub3D | Nathan Rontey
+    https://www.youtube.com/watch?v=rnWRs_BBgXc
 
-https://nathaan.me/projects/cub3d
+    https://www.youtube.com/watch?v=gYRrGTC7GtA
 
-- Articles and documentation :
+    https://www.youtube.com/watch?v=-DX84gp7csM
+
+    https://www.youtube.com/watch?v=ZAlMicFhHmM
+
+
+Cub3D | Nathan Rontey
+
+        https://nathaan.me/projects/cub3d
+
+Articles and documentation :
+
     Cub3D | Nathan Rontey
-https://nathaan.me/projects/cub3d
+
+        https://nathaan.me/projects/cub3d
 
 - AI-assisted tools (per 42 guidelines)
     Copilot (for vhorta-s)  
