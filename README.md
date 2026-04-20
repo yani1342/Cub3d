@@ -48,6 +48,7 @@ cub3d/
 ```
 
 **Resources**
+
 We used AI to know how we would split the project for 2 people :
 - **ymsa** — 2D part  
 - **vhorta-s** — 3D part
