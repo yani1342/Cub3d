@@ -84,13 +84,6 @@ $(LIBFT_LIB):
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
 # ===========================
-#      NORM RULE
-# ===========================
-norm:
-	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) includes/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
-
-# ===========================
 #      CLEAN RULES
 # ===========================
 clean:
@@ -113,4 +106,4 @@ bonus: all
 # ===========================
 #      PHONY
 # ===========================
-.PHONY: all clean fclean re norm bonus
+.PHONY: all clean fclean re bonus

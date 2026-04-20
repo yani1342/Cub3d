@@ -2,20 +2,22 @@ This project has been created as partcof the 42 curriculum by vhorta-s, ymsa
 
 Cub3D
 
+This project has been created as part of the 42 curriculum by vhorta-s and ymsa.
+
 **Description**
 
-cub3D is a 42 School project inspired by the Wolfenstein 3D engine. It is a small raycaster: you move on a 2D map while the program renders a first-person 3D view
+cub3D is a 42 School project inspired by the Wolfenstein 3D engine. It is a small raycaster: you move on a 2D map while the program renders a first-person 3D view.
 
-Project goals
+**Project goals**
 - Learn the basics of **raycasting**
 - Handle keyboard (and related) events
 - Use **MiniLibX**
 - Work with textures, collisions, map parsing, and related topics
 
 **Instruction**
-You will need to instal the minilibx-linux and put it in the folder cub3d.
+You will need to install the minilibx-linux and put it in the folder cub3d.
 
-- How to build :
+- How to build:
 cd minilibx-linux
 chmod +x configure
 make
@@ -47,6 +49,7 @@ We used AI to know how we would split the project for 2 people :
 - **vhorta-s** — 3D part
 
 -   Raycasting Tutorial (in Python) :
+
 https://youtu.be/E18bSJezaUE?si=IcJuT75h1u3TAsvC
 https://www.youtube.com/watch?v=rnWRs_BBgXc  
 https://www.youtube.com/watch?v=gYRrGTC7GtA&list=PLCXqoZAc8-tyDSaO8jnabOEFhdTQfx77_&index=1  
@@ -54,6 +57,7 @@ https://www.youtube.com/watch?v=-DX84gp7csM&list=PLpKIEFIlPlKbpTu78AqNnyozX2mZf3
 https://www.youtube.com/watch?v=ZAlMicFhHmM
 
 -   Cub3D | Nathan Rontey
+
 https://nathaan.me/projects/cub3d
 
 - Articles and documentation :
