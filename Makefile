@@ -88,7 +88,7 @@ $(LIBFT_LIB):
 # ===========================
 norm:
 	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) include/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
+	@norminette $(SRCS) includes/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
 
 # ===========================
 #      CLEAN RULES
