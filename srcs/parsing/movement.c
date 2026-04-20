@@ -46,8 +46,8 @@ static void	move_forward_back(t_data *data, int forward)
 		data->player.y = new_y;
 }
 
-// Pour aller à gauche/droite, on utilise le vecteur
-// perpendiculaire à la direction du regard.
+// Pour aller à gauche/droite, on utilise le vecteur 
+//perpendiculaire à la direction du regard.
 // Perpendiculaire de (dir_x, dir_y) = (-dir_y, dir_x)
 
 static void	move_side(t_data *data, int right)
@@ -72,8 +72,8 @@ static void	move_side(t_data *data, int right)
 // C'est exactement ce que font cos/sin — ils tournent un vecteur.
 // old_dir_x et old_dir_y = ancienne direction
 // Après rotation :
-//   dir_x = old_x * cos(turn) - old_y * sin(turn)
-//   dir_y = old_x * sin(turn) + old_y * cos(turn)
+//   dir_x = old_x * cos(angle) - old_y * sin(angle)
+//   dir_y = old_x * sin(angle) + old_y * cos(angle)
 
 static void	rotate(t_data *data, int right)
 {
@@ -86,13 +86,15 @@ static void	rotate(t_data *data, int right)
 	else
 		turn = ROT_SPEED;
 	old_dir_x = data->player.dir_x;
-	data->player.dir_x = old_dir_x * cos(turn) - data->player.dir_y * sin(turn);
-	data->player.dir_y = old_dir_x * sin(turn) + data->player.dir_y * cos(turn);
+	data->player.dir_x = old_dir_x * cos(turn)
+		- data->player.dir_y * sin(turn);
+	data->player.dir_y = old_dir_x * sin(turn)
+		+ data->player.dir_y * cos(turn);
 	old_plane_x = data->player.plane_x;
-	data->player.plane_x = old_plane_x * cos(turn) - data->player.plane_y
-		* sin(turn);
-	data->player.plane_y = old_plane_x * sin(turn) + data->player.plane_y
-		* cos(turn);
+	data->player.plane_x = old_plane_x * cos(turn)
+		- data->player.plane_y * sin(turn);
+	data->player.plane_y = old_plane_x * sin(turn)
+		+ data->player.plane_y * cos(turn);
 }
 
 void	handle_movement(int keycode, t_data *data)

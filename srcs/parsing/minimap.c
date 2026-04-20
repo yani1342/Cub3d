@@ -6,11 +6,22 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:19:00 by ymsa              #+#    #+#             */
-/*   Updated: 2026/03/11 09:46:39 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/04/19 00:30:59 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+static void	put_pixel(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return ;
+	dst = data->img.addr + (y * data->img.line_len)
+		+ (x * data->img.bpp / 8);
+	*(unsigned int *)dst = color;
+}
 
 static void	draw_tile(t_data *data, int x, int y, int color)
 {
@@ -23,7 +34,7 @@ static void	draw_tile(t_data *data, int x, int y, int color)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			draw_pixel(data, x + j, y + i, color);
+			put_pixel(data, x + j, y + i, color);
 			j++;
 		}
 		i++;
@@ -45,7 +56,7 @@ static void	draw_player(t_data *data, int off_x, int off_y)
 		j = 0;
 		while (j < 8)
 		{
-			draw_pixel(data, px + j, py + i, 0xFF0000);
+			put_pixel(data, px + j, py + i, 0xFF0000);
 			j++;
 		}
 		i++;
@@ -68,8 +79,8 @@ static void	draw_tiles(t_data *data, int off_x, int off_y)
 				color = 0x333333;
 			else
 				color = 0xAAAAAA;
-			draw_tile(data, off_x + j * TILE_SIZE, off_y + i * TILE_SIZE,
-				color);
+			draw_tile(data, off_x + j * TILE_SIZE, off_y + i
+				* TILE_SIZE, color);
 			j++;
 		}
 		i++;

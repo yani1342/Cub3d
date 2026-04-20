@@ -74,7 +74,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # ===========================
 $(MLX_LIB):
 	@echo "[MLX] Building MiniLibX..."
-	@$(MAKE) -C $(MLX_DIR) re
+	@$(MAKE) -C $(MLX_DIR)
 
 # ===========================
 #      BUILD LIBFT
@@ -88,7 +88,7 @@ $(LIBFT_LIB):
 # ===========================
 norm:
 	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) includes/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
+	@norminette $(SRCS) include/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
 
 # ===========================
 #      CLEAN RULES

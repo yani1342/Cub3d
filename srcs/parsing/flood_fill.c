@@ -70,19 +70,28 @@ static int	flood_fill(char **grid, int x, int y, int height)
 int	check_map_closed(t_data *data)
 {
 	char	**copy;
-	int		result;
-	int		px;
-	int		py;
+	int		y;
+	int		x;
 
 	copy = copy_grid(data->map.grid, data->map.height);
 	if (!copy)
 		return (0);
-	// Position du joueur en cases entières
-	px = (int)data->player.x;
-	py = (int)data->player.y;
-	result = flood_fill(copy, px, py, data->map.height);
-	free_split(copy);
-	if (!result)
-		ft_putstr_fd("Error\nMap is not closed\n", 2);
-	return (result);
+	y = 0;
+	while (copy[y])
+	{
+		x = 0;
+		while (copy[y][x])
+		{
+			// Si on trouve une zone vide ou le joueur non visité
+			if (ft_strchr("0NSEW", copy[y][x]))
+			{
+				// Si un seul flood_fill échoue, toute la map est invalide
+				if (!flood_fill(copy, x, y, data->map.height))
+					return (free_split(copy), ft_putstr_fd("Error\nMap not closed\n", 2), 0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (free_split(copy), 1);
 }

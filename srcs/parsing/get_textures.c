@@ -20,7 +20,7 @@ char	*skip_spaces(char *str)
 		str++;
 	return (str);
 }
-// Trouve le texte "./textures/briques_rouges.xpm"
+// Trouve le texte "./textures/briques_rouges.xpm" 
 // et le met de côté
 
 char	*extract_path(char *line)
@@ -52,9 +52,7 @@ static int	assign_texture(char **texture_path, char *trimmed)
 	return (1);
 }
 
-// savoir si c'est NORD SUD EST OU OUEST avant d'assigner la texture
-// lit les lignes NO/SO/WE/EA du .cub
-// stocke des chemins de fichiers (no_path, so_path, etc.)
+//savoir si c'est NORD SUD EST OU OUEST avant d'assigner la texture
 int	process_texture(t_data *data, char *trimmed)
 {
 	if (ft_strncmp(trimmed, "NO ", 3) == 0)
