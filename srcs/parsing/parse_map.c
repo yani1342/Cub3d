@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 15:59:04 by ymsa              #+#    #+#             */
-/*   Updated: 2026/04/20 14:10:55 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/04/20 20:25:00 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	parse_map(char *filename, t_data *data)
 	data->map.grid = store_map(filename);
 	if (!data->map.grid)
 	{
-		ft_putstr_fd("Error\nFailed to store map\n", 2);
 		free_map(&data->map, data->mlx_ptr);
 		exit(1);
 	}

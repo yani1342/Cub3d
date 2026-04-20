@@ -30,6 +30,7 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/minimap.c \
 			  parsing/events.c \
 			  parsing/movement.c \
+			  parsing/parsing2.c \
 			  exec/texture.c \
 			  exec/raycast.c \
 			  exec/wall_tex.c \

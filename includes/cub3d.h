@@ -152,10 +152,14 @@ int				handle_keypress(int keycode, t_data *data);
 int				handle_close(t_data *data);
 int				fill_grid(char **grid, char *filename);
 int				count_map_lines(char *filename);
+int				is_duplicate(char *trimmed);
+int				handle_elements(t_data *data, char *trimmed,
+					char *line, int fd);
+int				is_valid_identifier(char *str);
 
 void			free_split(char **tab);
 void			drain_gnl(int fd);
-
+void			exit_parsing_error(t_data *data, char *line, int fd, char *msg);
 void			set_camera_plane(t_player *p);
 void			draw_floor_ceiling(t_data *data);
 void			draw_pixel(t_data *data, int x, int y, int color);
