@@ -32,7 +32,6 @@ static int	is_numeric(char *str)
 	return (1);
 }
 
-// Transforme la chaine "220,100,0" en un code couleur int
 int	parse_rgb(char *color_str)
 {
 	char	**rgb;

@@ -49,7 +49,23 @@ static int	handle_line(t_data *data, char *line, int fd)
 		}
 	}
 	else if (trimmed[0] != '\0' && check_all_elements(data))
+	{
+		if (ft_strncmp(trimmed, "NO ", 3) == 0
+			|| ft_strncmp(trimmed, "SO ", 3) == 0
+			|| ft_strncmp(trimmed, "WE ", 3) == 0
+			|| ft_strncmp(trimmed, "EA ", 3) == 0
+			|| ft_strncmp(trimmed, "F ", 2) == 0
+			|| ft_strncmp(trimmed, "C ", 2) == 0)
+		{
+			ft_putstr_fd("Error\nDuplicate element found\n", 2);
+			free(line);
+			free_map(&data->map, NULL);
+			drain_gnl(fd);
+			close(fd);
+			exit(1);
+		}
 		return (0);
+	}
 	return (1);
 }
 
