@@ -1,7 +1,7 @@
 # ===========================
 #      PROJECT SETTINGS
 # ===========================
-NAME        = cub3D
+NAME        = cub3d
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
