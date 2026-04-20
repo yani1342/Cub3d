@@ -15,7 +15,6 @@
 
 #include "../../includes/cub3d.h"
 
-// check la map, minimum "a.cub"
 int	check_extension(char *filename)
 {
 	int	len;
@@ -30,7 +29,6 @@ int	check_extension(char *filename)
 
 int	is_readable(char *filename)
 {
-	// R_OK vérifie si le fichier possède la permission en lecture (Read)
 	if (access(filename, R_OK) == 0)
 		return (1);
 	return (0);
