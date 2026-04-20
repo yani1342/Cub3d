@@ -6,7 +6,7 @@
 /*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 20:24:16 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/20 13:59:43 by ymsa             ###   ########.fr       */
+/*   Updated: 2026/04/20 14:27:48 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	set_camera_plane(t_player *p)
 {
-	p->plane_x = p->dir_y * FOV;
-	p->plane_y = -p->dir_x * FOV;
+	p->plane_x = -p->dir_y * FOV;
+	p->plane_y = p->dir_x * FOV;
 }
 
 void	draw_pixel(t_data *data, int x, int y, int color)
