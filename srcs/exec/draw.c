@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ymsa <ymsa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 20:24:16 by marvin            #+#    #+#             */
-/*   Updated: 2026/04/18 20:24:16 by marvin           ###   ########.fr       */
+/*   Updated: 2026/04/20 13:59:43 by ymsa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	set_camera_plane(t_player *p)

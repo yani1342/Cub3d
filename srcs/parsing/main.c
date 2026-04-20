@@ -20,7 +20,6 @@ int	main(int argc, char **argv)
 	init_map_data(&data);
 	parse_file(argv[1], &data);
 	init_mlx(&data);
-	set_camera_plane(&data.player);
 	load_textures(&data);
 	frame_maker(&data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, handle_keypress, &data);
