@@ -82,9 +82,9 @@ static void	rotate(t_data *data, int right)
 	double	turn;
 
 	if (right)
-		turn = -ROT_SPEED;
-	else
 		turn = ROT_SPEED;
+	else
+		turn = -ROT_SPEED;
 	old_dir_x = data->player.dir_x;
 	data->player.dir_x = old_dir_x * cos(turn)
 		- data->player.dir_y * sin(turn);
