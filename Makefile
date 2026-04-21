@@ -1,10 +1,10 @@
 # ===========================
 #      PROJECT SETTINGS
 # ===========================
-NAME        = cub3D
+NAME        = cub3d
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g3
+CFLAGS      = -Wall -Wextra -Werror
 INCLUDES    = -Iincludes -I$(MLX_DIR)
 
 SRC_DIR     = srcs
@@ -30,6 +30,7 @@ SRCS_FILES  = parsing/main.c \
 			  parsing/minimap.c \
 			  parsing/events.c \
 			  parsing/movement.c \
+			  parsing/parsing2.c \
 			  exec/texture.c \
 			  exec/raycast.c \
 			  exec/wall_tex.c \
@@ -84,13 +85,6 @@ $(LIBFT_LIB):
 	@$(MAKE) -s -C $(LIBFT_DIR)
 
 # ===========================
-#      NORM RULE
-# ===========================
-norm:
-	@echo "[NORM] Checking code style..."
-	@norminette $(SRCS) include/*.h | sed 's/Error/🔴 Error/g' | sed 's/Warning/🟡 Warning/g'
-
-# ===========================
 #      CLEAN RULES
 # ===========================
 clean:
@@ -113,4 +107,4 @@ bonus: all
 # ===========================
 #      PHONY
 # ===========================
-.PHONY: all clean fclean re norm bonus
+.PHONY: all clean fclean re bonus

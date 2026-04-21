@@ -12,8 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-// Avant de bouger, on vérifie que la nouvelle case n'est pas un mur '1'.
-// Si c'est un mur, on bloque le mouvement.
 static int	is_wall(t_data *data, double x, double y)
 {
 	int	map_x;
@@ -46,10 +44,6 @@ static void	move_forward_back(t_data *data, int forward)
 		data->player.y = new_y;
 }
 
-// Pour aller à gauche/droite, on utilise le vecteur 
-//perpendiculaire à la direction du regard.
-// Perpendiculaire de (dir_x, dir_y) = (-dir_y, dir_x)
-
 static void	move_side(t_data *data, int right)
 {
 	double	new_x;
@@ -67,13 +61,6 @@ static void	move_side(t_data *data, int right)
 	if (!is_wall(data, data->player.x, new_y))
 		data->player.y = new_y;
 }
-
-// Tourner = faire pivoter le vecteur direction d'un angle.
-// C'est exactement ce que font cos/sin — ils tournent un vecteur.
-// old_dir_x et old_dir_y = ancienne direction
-// Après rotation :
-//   dir_x = old_x * cos(angle) - old_y * sin(angle)
-//   dir_y = old_x * sin(angle) + old_y * cos(angle)
 
 static void	rotate(t_data *data, int right)
 {

@@ -12,7 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-//Vérifie si nos 6 tiroirs sont bien remplis
 int	check_all_elements(t_data *data)
 {
 	if (data->map.no_path && data->map.so_path && data->map.we_path
@@ -22,36 +21,19 @@ int	check_all_elements(t_data *data)
 	return (0);
 }
 
-static int	is_valid_identifier(char *str)
-{
-	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0
-		|| ft_strncmp(str, "WE ", 3) == 0 || ft_strncmp(str, "EA ", 3) == 0
-		|| ft_strncmp(str, "F ", 2) == 0 || ft_strncmp(str, "C ", 2) == 0)
-		return (1);
-	ft_putstr_fd("Error\nInvalid identifier or garbage line found\n", 2);
-	return (0);
-}
-
 static int	handle_line(t_data *data, char *line, int fd)
 {
 	char	*trimmed;
 
 	trimmed = skip_spaces(line);
-	if (trimmed[0] != '\0' && !check_all_elements(data))
-	{
-		if (!is_valid_identifier(trimmed) || !process_texture(data, trimmed)
-			|| !process_color(data, trimmed))
-		{
-			free(line);
-			free_map(&data->map, NULL);
-			drain_gnl(fd);
-			close(fd);
-			exit(1);
-		}
-	}
-	else if (trimmed[0] != '\0' && check_all_elements(data))
-		return (0);
-	return (1);
+	if (trimmed[0] == '\0')
+		return (1);
+	if (!check_all_elements(data))
+		return (handle_elements(data, trimmed, line, fd));
+	if (is_duplicate(trimmed))
+		exit_parsing_error(data, line, fd,
+			"Error\nDuplicate element found\n");
+	return (0);
 }
 
 static void	check_missing_elements(t_data *data, char *line, int fd)

@@ -12,9 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-// on copie car flood fill va modifier la grille en marquant les cases visitées.
-// On ne veut pas détruire la vraie carte — le jeu en a besoin après.
-
 static char	**copy_grid(char **grid, int height)
 {
 	char	**copy;
@@ -35,24 +32,15 @@ static char	**copy_grid(char **grid, int height)
 	return (copy);
 }
 
-// la carte n'est pas fermée → on retourne 0 (erreur).
-// Si on tombe sur un '1' → mur → on s'arrête, c'est bon.
-// Si on tombe sur 'V' → déjà visité → on s'arrête (évite boucle infinie).
-
 static int	flood_fill(char **grid, int x, int y, int height)
 {
-	// Sorti du tableau = carte pas fermée
 	if (y < 0 || y >= height || x < 0 || x >= (int)ft_strlen(grid[y]))
 		return (0);
-	// Mur = on s'arrête, c'est bon
 	if (grid[y][x] == '1')
 		return (1);
-	// Déjà visité = on s'arrête
 	if (grid[y][x] == 'V')
 		return (1);
-	// On marque la case comme visitée
 	grid[y][x] = 'V';
-	// On propage dans les 4 directions
 	if (!flood_fill(grid, x + 1, y, height))
 		return (0);
 	if (!flood_fill(grid, x - 1, y, height))
@@ -63,9 +51,6 @@ static int	flood_fill(char **grid, int x, int y, int height)
 		return (0);
 	return (1);
 }
-
-// C'est la fonction appelée depuis parse_map.
-// Elle orchestre la copie, le flood fill, et le nettoyage.
 
 int	check_map_closed(t_data *data)
 {
@@ -82,12 +67,11 @@ int	check_map_closed(t_data *data)
 		x = 0;
 		while (copy[y][x])
 		{
-			// Si on trouve une zone vide ou le joueur non visité
 			if (ft_strchr("0NSEW", copy[y][x]))
 			{
-				// Si un seul flood_fill échoue, toute la map est invalide
 				if (!flood_fill(copy, x, y, data->map.height))
-					return (free_split(copy), ft_putstr_fd("Error\nMap not closed\n", 2), 0);
+					return (free_split(copy),
+						ft_putstr_fd("Error\nMap not closed\n", 2), 0);
 			}
 			x++;
 		}
